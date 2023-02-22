@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Staff;
-use Illuminate\Database\Seeder;
 use Faker\Factory;
+use Illuminate\Database\Seeder;
 
 class StaffSeeder extends Seeder
 {
@@ -18,7 +18,7 @@ class StaffSeeder extends Seeder
         $faker = Factory::create();
 
         Staff::create([
-            'name' => $faker->name(),
+            'name' => 'admin',
             'address' => $faker->address(),
             'phone' => $faker->numerify('09#########'),
             'department_id' => 1,
