@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Database\Seeders\DepartmentSeeder;
 use Database\Seeders\PositionsSeeder;
 use Database\Seeders\StaffSeeder;
+use Database\Seeders\UserSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,6 +21,7 @@ class DatabaseSeeder extends Seeder
             DepartmentSeeder::class,
             PositionsSeeder::class,
             StaffSeeder::class,
+            UserSeeder::class,
         ]);
     }
 }
