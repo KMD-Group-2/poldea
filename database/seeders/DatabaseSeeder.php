@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Database\Seeders\DepartmentSeeder;
 use Database\Seeders\PositionsSeeder;
+use Database\Seeders\StaffSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,6 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             DepartmentSeeder::class,
             PositionsSeeder::class,
+            StaffSeeder::class,
         ]);
     }
 }

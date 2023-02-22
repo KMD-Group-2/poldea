@@ -15,6 +15,7 @@ class DepartmentSeeder extends Seeder
     public function run()
     {
         $departments = [
+            ['name' => 'administration'],
             ['name' => 'arts'],
             ['name' => 'chemistry'],
             ['name' => 'history'],
