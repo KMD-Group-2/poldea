@@ -22,4 +22,9 @@ class Staff extends Model
         'department_id',
         'position_id',
     ];
+
+    public function users()
+    {
+        return $this->hasMany(User::class,'staff_id', 'id');
+    }
 }
