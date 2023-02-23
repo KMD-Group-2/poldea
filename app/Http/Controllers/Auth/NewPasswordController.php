@@ -51,13 +51,18 @@ class NewPasswordController extends Controller
         {
             $query = Staff::where('email', $request->email)->first();
 
-            $user = $query->users->first()->update([
-                'password' => Hash::make($request->password),
-            ]);
+            if($query->users->first() != null)
+            {
+                $user = $query->users->first()->update([
+                    'password' => Hash::make($request->password),
+                ]);
 
-            event(new PasswordReset($user));
+                event(new PasswordReset($user));
 
-            return redirect()->route('login')->with('status', __('passwords.reset'));
+                return redirect()->route('login')->with('status', __('passwords.reset'));
+            }else{
+                return back()->withInput($request->only('email'))->withErrors(['email' => __('auth.failed')]);
+            }
         }else{
             return back()->withInput($request->only('email'))->withErrors(['email' => __('auth.failed')]);
         }

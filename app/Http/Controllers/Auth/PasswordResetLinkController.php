@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Jobs\SendResetPassword;
+use App\Models\Staff;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 
@@ -33,12 +34,19 @@ class PasswordResetLinkController extends Controller
             'email' => ['required', 'email'],
         ]);
 
-        // send password reset link with SendResetPassword Job
-        SendResetPassword::dispatch(
-            $request->only('email')
-        );
+        $query = Staff::where('email',$request->email)->first();
 
-        return redirect()->back()->with('status', __('passwords.sent'));
+        if($query)
+        {
+            // send password reset link with SendResetPassword Job
+            SendResetPassword::dispatch(
+                $request->only('email')
+            );
+
+            return redirect()->back()->with('status', __('passwords.sent'));
+        }else{
+            return back()->withInput($request->only('email'))->withErrors(['email' => __('passwords.user')]);
+        }
 
         // We will send the password reset link to this user. Once we have attempted
         // to send the link, we will examine the response then see the message we
