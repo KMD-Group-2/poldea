@@ -19,6 +19,7 @@ class StaffSeeder extends Seeder
 
         Staff::create([
             'name' => 'admin',
+            'email' => $faker->email(),
             'address' => $faker->address(),
             'phone' => $faker->numerify('09#########'),
             'department_id' => 1,
