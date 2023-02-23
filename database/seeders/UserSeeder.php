@@ -16,6 +16,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::create([
+            'photo' => '/assets/images/default-user.png',
             'username' => 'admin',
             'password' => Hash::make('password'),
             'staff_id' => 1,
