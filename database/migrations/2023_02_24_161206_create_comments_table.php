@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStaffTable extends Migration
+class CreateComments extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,12 @@ class CreateStaffTable extends Migration
      */
     public function up()
     {
-        Schema::create('staff', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 100);
-            $table->integer('department_id');
-            $table->integer('position_id');
-            $table->string('email', 50)->unique();
-            $table->string('address', 255);
-            $table->string('phone', 25);
-            $table->text('photo');
+            $table->integer('idea_id');
+            $table->integer('user_id');
+            $table->text('comment');
+            $table->boolean('anonymous');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
@@ -34,6 +31,6 @@ class CreateStaffTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('staff');
+        Schema::dropIfExists('comments');
     }
 }
