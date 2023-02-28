@@ -43,6 +43,7 @@ class SendResetPassword implements ShouldQueue
         $token = Str::random(64);
 
         DB::table('password_resets')->insert([
+            'username' => $this->credentials['username'],
             'email' => $this->credentials['email'],
             'token' => $token,
             'created_at' => Carbon::now()

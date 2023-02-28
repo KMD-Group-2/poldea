@@ -43,7 +43,8 @@
                         <!-- text-->
                         <div class="dropdown-divider"></div>
                         <!-- text-->
-                        <a href="pages-login.html" class="dropdown-item"><i class="fa fa-power-off"></i> Logout</a>
+                        <a href="javascript:void(0)" class="dropdown-item" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();"><i class="fa fa-power-off"></i> Logout</a>
                         <!-- text-->
                     </div>
                 </li>
