@@ -1,52 +1,56 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
-    <!-- Primary Navigation Menu -->
-    <div class="mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="justify-between h-16 hidden space-x-8 md:-my-px md:ml-10 md:flex">
-            <div class="flex">
-                <!-- Logo -->
-                <div class="shrink-0 flex items-center">
-                    <a class="font-extrabold text-transparent text-sm bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-600"
-                        href="{{ route('dashboard') }}">
-                        POLDEA
-                    </a>
-                </div>
-            </div>
-
-            <!-- Settings Dropdown -->
-            <div class="hidden sm:flex sm:items-center sm:ml-6">
-                <x-dropdown align="right" width="48">
-                    <x-slot name="trigger">
-                        <button
-                            class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
-                            <div>{{ Auth::user()->username }}</div>
-
-                            <div class="ml-1">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd"
-                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </div>
-                        </button>
-                    </x-slot>
-
-                    <x-slot name="content">
-                        <!-- Authentication -->
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-
-                            <x-dropdown-link :href="route('logout')"
-                                onclick="event.preventDefault();
-                                            this.closest('form').submit();">
-                                {{ __('Log Out') }}
-                            </x-dropdown-link>
-                        </form>
-                    </x-slot>
-                </x-dropdown>
-            </div>
-
-
+<header class="topbar">
+    <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+        <!-- ============================================================== -->
+        <!-- Logo -->
+        <!-- ============================================================== -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="">
+                <!-- Logo icon --><b>
+                    <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                    <!-- Dark Logo icon -->
+                    <img src="{{ asset('assets/images/default-user.png') }}" alt="homepage" class="dark-logo" width="50px" />
+                    <!-- Light Logo icon -->
+                    <img src="{{ asset('assets/images/default-user.png') }}" alt="homepage" class="light-logo"  width="50px" />
+                </b>
+                <!--End Logo icon -->
+                <span class="hidden-xs"><span class="font-bold">Poldea</span></span>
+            </a>
         </div>
-    </div>
-</nav>
+        <!-- ============================================================== -->
+        <!-- End Logo -->
+        <!-- ============================================================== -->
+        <div class="navbar-collapse">
+            <!-- ============================================================== -->
+            <!-- toggle and nav items -->
+            <!-- ============================================================== -->
+            <ul class="navbar-nav mr-auto">
+                <!-- This is  -->
+                <li class="nav-item"> <a class="nav-link nav-toggler d-block d-md-none waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                <li class="nav-item"> <a class="nav-link sidebartoggler d-none d-lg-block d-md-block waves-effect waves-dark" href="javascript:void(0)"><i class="icon-menu"></i></a> </li>
+            </ul>
+            <!-- ============================================================== -->
+            <!-- User profile and search -->
+            <!-- ============================================================== -->
+            <ul class="navbar-nav my-lg-0">
+                <!-- ============================================================== -->
+                <!-- User Profile -->
+                <!-- ============================================================== -->
+                <li class="nav-item dropdown u-pro">
+                    <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{ asset('assets/images/default-user.png') }}" alt="user" class=""> <span class="hidden-md-down">Mark &nbsp;<i class="fa fa-angle-down"></i></span> </a>
+                    <div class="dropdown-menu dropdown-menu-right animated flipInY">
+                        <!-- text-->
+                        <a href="javascript:void(0)" class="dropdown-item"><i class="ti-user"></i> My Profile</a>
+                        <!-- text-->
+                        <div class="dropdown-divider"></div>
+                        <!-- text-->
+                        <a href="pages-login.html" class="dropdown-item"><i class="fa fa-power-off"></i> Logout</a>
+                        <!-- text-->
+                    </div>
+                </li>
+                <!-- ============================================================== -->
+                <!-- End User Profile -->
+                <!-- ============================================================== -->
+            </ul>
+        </div>
+    </nav>
+</header>
