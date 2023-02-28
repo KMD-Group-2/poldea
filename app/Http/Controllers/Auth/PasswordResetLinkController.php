@@ -4,9 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Jobs\SendResetPassword;
-use App\Models\Staff;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Password;
 
 class PasswordResetLinkController extends Controller
 {
@@ -31,19 +30,24 @@ class PasswordResetLinkController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'username' => ['required', 'string'],
             'email' => ['required', 'email'],
         ]);
 
-        $query = Staff::where('email',$request->email)->first();
-
+        $query = User::where('username',$request->username)->with('staff')->first();
         if($query)
         {
-            // send password reset link with SendResetPassword Job
-            SendResetPassword::dispatch(
-                $request->only('email')
-            );
+            if(str_replace(' ', '',$query->staff->email) == str_replace(' ', '',$request->email))
+            {
+                // send password reset link with SendResetPassword Job
+                SendResetPassword::dispatch(
+                    $request->only(['email','username'])
+                );
 
-            return redirect()->back()->with('status', __('passwords.sent'));
+                return redirect()->back()->with('status', __('passwords.sent'));
+            }else{
+                return back()->withInput($request->only('email'))->withErrors(['email' => __('passwords.user')]);
+            }
         }else{
             return back()->withInput($request->only('email'))->withErrors(['email' => __('passwords.user')]);
         }

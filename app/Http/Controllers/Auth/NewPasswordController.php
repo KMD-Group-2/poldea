@@ -3,13 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\Staff;
+use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Password;
-use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
 
 class NewPasswordController extends Controller
@@ -41,19 +39,18 @@ class NewPasswordController extends Controller
     {
         $request->validate([
             'token' => ['required'],
-            'email' => ['required', 'email'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $valid = DB::table('password_resets')->where('token',$request->token)->where('email',$request->email)->count() == 0 ? false : true;
+        $tokenData = DB::table('password_resets')->where('token',$request->token)->first();
 
-        if($valid)
+        if($tokenData)
         {
-            $query = Staff::where('email', $request->email)->first();
+            $query = User::where('username', $tokenData->username)->first();
 
-            if($query->users->first() != null)
+            if($query)
             {
-                $user = $query->users->first()->update([
+                $user = $query->update([
                     'password' => Hash::make($request->password),
                 ]);
 
