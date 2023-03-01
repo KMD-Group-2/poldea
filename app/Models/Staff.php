@@ -9,6 +9,8 @@ class Staff extends Model
 {
     use HasFactory;
 
+    protected $table = 'staffs';
+
     /**
      * The attributes that are mass assignable.
      *

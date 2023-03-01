@@ -8,12 +8,12 @@
                 <!-- Logo icon --><b>
                     <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                     <!-- Dark Logo icon -->
-                    <img src="{{ asset('assets/images/default-user.png') }}" alt="homepage" class="dark-logo" width="50px" />
+                    {{-- <img src="{{ asset('assets/images/logo/Poldea_logo_icon_color.svg') }}" alt="homepage" class="dark-logo" width="50px" /> --}}
                     <!-- Light Logo icon -->
-                    <img src="{{ asset('assets/images/default-user.png') }}" alt="homepage" class="light-logo"  width="50px" />
+                    <x-application-logo type="icon_white" width="50px" height="40px" />
                 </b>
                 <!--End Logo icon -->
-                <span class="hidden-xs"><span class="font-bold">Poldea</span></span>
+                <span class="hidden-xs ml-1"><span class="font-bold">Poldea</span></span>
             </a>
         </div>
         <!-- ============================================================== -->
@@ -35,8 +35,9 @@
                 <!-- ============================================================== -->
                 <!-- User Profile -->
                 <!-- ============================================================== -->
+
                 <li class="nav-item dropdown u-pro">
-                    <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{ asset(Auth::user()->photo ?? '/assets/images/default-user.png') }}" alt="user" class=""> <span class="hidden-md-down">{{ Auth::user()->username ?? '' }} &nbsp;<i class="fa fa-angle-down"></i></span> </a>
+                    <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{ Auth::user()->staff->photo ?? asset('/assets/images/default-user.png') }}" alt="user" class=""> <span class="hidden-md-down">{{ Auth::user()->username ?? '' }} &nbsp;<i class="fa fa-angle-down"></i></span> </a>
                     <div class="dropdown-menu dropdown-menu-right animated flipInY">
                         <!-- text-->
                         <a href="javascript:void(0)" class="dropdown-item"><i class="ti-user"></i> My Profile</a>
