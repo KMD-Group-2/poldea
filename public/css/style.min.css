@@ -36339,8 +36339,8 @@ ul.list-style-none li a:hover {
 }
 .right-sidebar {
     position: fixed;
-    right: -240px;
-    width: 240px;
+    right: -500px;
+    width: 500px;
     display: none;
     z-index: 1100;
     background: #fff;
@@ -36379,7 +36379,7 @@ ul.list-style-none li a:hover {
 }
 .shw-rside {
     right: 0;
-    width: 240px;
+    width: 500px;
     display: block;
 }
 ul#themecolors {

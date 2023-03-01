@@ -19567,8 +19567,8 @@ sidebar navigation
 *******************/
 .right-sidebar {
   position: fixed;
-  right: -240px;
-  width: 240px;
+  right: -500px;
+  width: 500px;
   display: none;
   z-index: 1100;
   background: #fff;
@@ -19601,7 +19601,7 @@ sidebar navigation
 
 .shw-rside {
   right: 0px;
-  width: 240px;
+  width: 500px;
   display: block; }
 
 /*******************
