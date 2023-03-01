@@ -2,7 +2,7 @@
     <section id="wrapper">
         <div class="login-register">
             <div class="logo">
-                <img src="{{ asset('assets/images/default-user.png') }}" alt="Logo">
+                <x-application-logo type="vertical_color" width="300px" height="300px" />
             </div>
             <div class="login-box card">
                 <div class="card-body">
