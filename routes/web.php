@@ -13,18 +13,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::redirect('/','login');
+Route::redirect('/', 'login');
 
 //Route::middleware(['auth'])->group(function(){
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-    Route::get('/staff', function () {
-        return view('staff');
-    })->name('staff');
-    Route::get('/user', function () {
-        return view('user');
-    })->name('user');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+Route::get('/staff', function () {
+    return view('staff');
+})->name('staff');
+Route::get('/user', function () {
+    return view('user');
+})->name('user');
+Route::get('/idea', function () {
+    return view('idea');
+})->name('idea');
+Route::get('/create_idea', function () {
+    return view('idea_create');
+})->name('create idea');
 //});
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

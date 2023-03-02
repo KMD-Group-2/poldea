@@ -12,7 +12,12 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap"> 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+
+    <!-- page css -->
+    <link href="{{ asset('css/pages/inbox.css') }}" rel="stylesheet">
+    
+    <link href="{{ asset('css/pages/contact-app-page.css') }}" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="{{ asset('css/style.min.css') }}" rel="stylesheet">
@@ -65,8 +70,9 @@
         .highcharts-data-table tr:hover {
             background: #f1f7ff;
         }
-        .highcharts-credits{
-            display:none;
+
+        .highcharts-credits {
+            display: none;
         }
     </style>
 </head>
@@ -97,6 +103,14 @@
         <!-- ============================================================== -->
         <!-- End Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- User Dashboard Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        {{-- @include('layouts.idea.sidebar') --}}
+        <!-- ============================================================== -->
+        <!-- End User Dashboard Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+
 
         <!-- Page Content -->
         <div class="page-wrapper">
@@ -124,7 +138,7 @@
     <!--Custom JavaScript -->
     <script src="{{ asset('js/custom.min.js') }}"></script>
 
-    
+
 </body>
 
 </html>
