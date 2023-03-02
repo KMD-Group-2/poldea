@@ -16,7 +16,7 @@
                     <div class="card-body">
                         <div class="row" style="padding-bottom:30px;">
                             <div class="col-md-5 align-self-center">
-                                <img src="{{ asset('assets/images/selector.svg') }}"/> <img src="{{ asset('assets/images/downarrow.svg') }}"/> Selected (1) <img src="{{ asset('assets/images/divider.svg') }}" style="padding-left:20px;"/> 
+                                <img src="{{ asset('assets/images/selector.svg') }}"/> <img src="{{ asset('assets/images/downarrow.svg') }}"/> Selected (1) <img src="{{ asset('assets/images/divider.svg') }}" style="padding-left:20px;"/>
                                 <span class="btn"><i class="ti-trash"></i> Delete Staff</span>
                             </div>
                             <div class="col-md-7 align-self-center text-right">
@@ -76,12 +76,12 @@
             <div class="rpanel-title"> Staff Info <span><i class="ti-close right-side-toggle"></i></span> </div>
             <div class="r-panel-body">
                 <ul id="themecolors" class="m-t-20">
-                    
+
                 </ul>
                 <ul class="m-t-20 chatonline">
-                    
+
                 </ul>
             </div>
-        </div>        
+        </div>
     </div>
 </x-app-layout>

@@ -16,7 +16,7 @@
 
     <!-- page css -->
     <link href="{{ asset('css/pages/inbox.css') }}" rel="stylesheet">
-    
+
     <link href="{{ asset('css/pages/contact-app-page.css') }}" rel="stylesheet">
 
     <!-- Custom CSS -->
@@ -99,7 +99,17 @@
         <!-- ============================================================== -->
         <!-- Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
-        @include('layouts.sidebar')
+        @if (auth()->user()->hasRole('Admin'))
+            @include('layouts.sidebars.admin')
+        @elseif (auth()->user()->hasRole('QA-Manager'))
+            @include('layouts.sidebars.qa-manager')
+        @elseif (auth()->user()->hasRole('QA-Coordinator'))
+            @include('layouts.sidebars.qa-coordinator')
+        @elseif (auth()->user()->hasRole('Staff'))
+            @include('layouts.sidebars.staff')
+        @else
+            Side Bar Error ( Role Undefined )
+        @endif
         <!-- ============================================================== -->
         <!-- End Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
@@ -110,7 +120,6 @@
         <!-- ============================================================== -->
         <!-- End User Dashboard Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
-
 
         <!-- Page Content -->
         <div class="page-wrapper">

@@ -17,9 +17,11 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('username', 50)->unique();
             $table->string('password', 255);
-            $table->integer('staff_id');
+            $table->unsignedBigInteger('staff_id');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
+
+            $table->foreign('staff_id')->on('staffs')->references('id');
         });
     }
 
