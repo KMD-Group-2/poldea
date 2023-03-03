@@ -29,6 +29,7 @@ class StoreUserRequest extends FormRequest
             'username' => ['required', 'string', 'max:50', 'unique:users,username'],
             'password' => ['required', 'confirmed', Password::defaults()],
             'staff_id' => ['required'],
+            'role_id' => ['required'],
         ];
     }
 
@@ -40,7 +41,8 @@ class StoreUserRequest extends FormRequest
     public function messages()
     {
         return [
-           'staff_id' => 'Please select staff',
+           'staff_id.required' => 'Please Select Staff',
+           'role_id.required' => 'Please Select Role',
         ];
     }
 
