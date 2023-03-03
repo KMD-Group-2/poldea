@@ -11,15 +11,13 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-
     <!-- page css -->
     <link href="{{ asset('css/pages/inbox.css') }}" rel="stylesheet">
 
     <link href="{{ asset('css/pages/contact-app-page.css') }}" rel="stylesheet">
 
     <!-- Custom CSS -->
+    <link href="{{ asset('assets/plugins/select2/dist/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('css/style.min.css') }}" rel="stylesheet">
 
     <!--High Charts -->
@@ -149,8 +147,12 @@
     <script src="{{ asset('js/sidebarmenu.js') }}"></script>
     <!--Custom JavaScript -->
     <script src="{{ asset('js/custom.min.js') }}"></script>
+    <!-- ============================================================== -->
+    <!-- This page plugins -->
+    <!-- ============================================================== -->
+    <script src="{{ asset('assets/plugins/select2/dist/js/select2.full.min.js') }}" type="text/javascript"></script>
 
-
+    <script src="{{ asset('js/main.js') }}"></script>
 </body>
 
 </html>

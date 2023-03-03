@@ -15,4 +15,9 @@ class Position extends Model
      * @var array
      */
     protected $fillable = ['name'];
+
+    public function staffs()
+    {
+        return $this->hasMany(Staff::class);
+    }
 }
