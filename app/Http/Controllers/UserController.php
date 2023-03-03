@@ -19,11 +19,14 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(10);
+        $users = User::with(['roles','staff','staff.department','staff.position'])->paginate(10);
 
-        $staffs = Staff::select('id','name')->get();
+        $staffs = Staff::with(['department','position'])->get();
 
         $roles = Role::select('id','name')->get();
+
+        // For Select2 Plugin
+        view()->share(['select2' => true]);
 
         return view('pages.users.index',compact('users','staffs','roles'));
     }
@@ -55,6 +58,12 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, User $user)
     {
         $user->update($request->validated());
+        $role = Role::findById($request->validated()['role_id']);
+        DB::table('model_has_roles')->where('model_id', $user->id)->delete();
+        DB::table('model_has_permissions')->where('model_id', $user->id)->delete();
+
+        $user->syncPermissions($role->permissions);
+        $user->assignRole([$role->id]);
 
         return response()->json(['success' => 'Succesfully Updated']);
     }

@@ -27,7 +27,7 @@ class Staff extends Model
 
     public function users()
     {
-        return $this->hasMany(User::class, 'staff_id', 'id');
+        return $this->hasMany(User::class);
     }
 
     public function department()

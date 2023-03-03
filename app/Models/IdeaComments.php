@@ -23,7 +23,7 @@ class IdeaComments extends Model
 
     public function idea()
     {
-        return $this->belongsTo(Idea::class,'idea_id','id');
+        return $this->belongsTo(Idea::class);
     }
 
     public function user()
