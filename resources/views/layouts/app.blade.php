@@ -166,7 +166,7 @@
 
     <script src="{{ asset('js/main.js') }}"></script>
 
-    {{ $script }}
+    {{ $script ?? false }}
 </body>
 
 </html>
