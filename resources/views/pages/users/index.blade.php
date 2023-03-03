@@ -6,7 +6,7 @@
             </div>
             <div class="col-md-7 align-self-center text-right">
                 <div class="d-flex justify-content-end align-items-center">
-                    <button type="button" class="btn btn-info d-none d-lg-block m-l-15 right-side-toggle"><i class="fa fa-plus-circle"></i> Add New user</button>
+                    <button type="button" class="btn btn-info d-none d-lg-block m-l-15 new-user-form"><i class="fa fa-plus-circle"></i> Add New Staff</button>
                 </div>
             </div>
         </div>
@@ -84,4 +84,86 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="myModalNewUser">
+        <div class="modal-dialog" style="max-width: 100% !important;">
+            <div class="modal-content" style="width: 33%;top: 29px;margin-left: 33%;">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add New User<span id="total_records" style="font-weight:bold;"> </span></h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <section class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card card-outline card-primary">
+                                    <div class="overlay white" id="loading" style="display:none;position: absolute;width: 100%;height: 100%;z-index: 10000;">
+                                        <i class="fas fa-3x fa-sync-alt rotate360"  style="margin: 70px 45%;"></i>
+                                    </div>
+                                    <form role="form" id="frmNewUser">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-3 col-form-label" style="text-align: right;">Department:</label>
+                                                        <div class="col-md-9">
+                                                            <select class="form-control" id="cboDepartment" style="text-align:right">
+                                                                <option value=""></option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-md-3 col-form-label" style="text-align: right;">Job Title:</label>
+                                                        <div class="col-md-9">
+                                                            <select class="form-control" id="cboJobTitle" style="text-align:right">
+                                                                <option value=""></option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-md-3 col-form-label" style="text-align: right;">Staff:</label>
+                                                        <div class="col-md-9">
+                                                            <select class="form-control" id="cboStaff" style="text-align:right">
+                                                                <option value=""></option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-md-3 col-form-label" style="text-align: right;">User Role:</label>
+                                                        <div class="col-md-9">
+                                                            <select class="form-control" id="cboUserRole" style="text-align:right">
+                                                                <option value=""></option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-md-3 col-form-label" style="text-align: right;">User Name:</label>
+                                                        <div class="col-md-9">
+                                                            <input type="text" class="form-control" id="txtUserName">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row" style="margin-bottom: 0px;">
+                                                        <div class="col-md-6"></div>
+                                                        <div class="col-md-6 btnAdd">
+                                                            <button type="button" class="btn btn-info btn-block" onclick="add()">Add New</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>	
+            </div>
+        </div>
+    </div>
+    <script>
+        $( ".new-user-form" ).click(function() {
+            $("#myModalNewUser").modal('show');
+        });
+    </script>
 </x-app-layout>

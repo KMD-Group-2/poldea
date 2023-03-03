@@ -28,6 +28,9 @@
     <script src="https://code.highcharts.com/modules/variable-pie.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <style>
         .highcharts-figure,
         .highcharts-data-table table {
