@@ -20787,14 +20787,12 @@ a.close.disabled {
     vertical-align: text-top !important;
 }
 .bg-primary {
-    background-color: #fb9678 !important;
-}
-a.bg-primary:focus,
-a.bg-primary:hover,
-button.bg-primary:focus,
-button.bg-primary:hover {
-    background-color: #fa6f46 !important;
-}
+    background-color: #004274 !important; }
+
+  a.bg-primary:hover, a.bg-primary:focus,
+  button.bg-primary:hover,
+  button.bg-primary:focus {
+    background-color: #3b5998 !important; }
 .bg-secondary {
     background-color: #f8f9fa !important;
 }
