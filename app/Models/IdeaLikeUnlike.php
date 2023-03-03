@@ -22,11 +22,11 @@ class IdeaLikeUnlike extends Model
 
     public function idea()
     {
-        return $this->belongsTo(Idea::class,'idea_id','id');
+        return $this->belongsTo(Idea::class);
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class,'user_id','id');
+        return $this->belongsTo(User::class);
     }
 }

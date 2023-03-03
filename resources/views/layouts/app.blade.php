@@ -17,7 +17,9 @@
     <link href="{{ asset('css/pages/contact-app-page.css') }}" rel="stylesheet">
 
     <!-- Custom CSS -->
+    @if ($select2 ?? false)
     <link href="{{ asset('assets/plugins/select2/dist/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
+    @endif
     <link href="{{ asset('css/style.min.css') }}" rel="stylesheet">
 
     <style>
@@ -138,18 +140,29 @@
     <script src="{{ asset('js/sidebarmenu.js') }}"></script>
     <!--Custom JavaScript -->
     <script src="{{ asset('js/custom.min.js') }}"></script>
+
+
+
+    <script>
+        // console.log($(document).find('.right-side-toggle'));
+    </script>
     <!-- ============================================================== -->
     <!-- This page plugins -->
     <!-- ============================================================== -->
 
     <!--High Charts -->
-    <script src="https://code.highcharts.com/highcharts.js"></script>
+    {{-- <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/variable-pie.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
-    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script> --}}
 
+    @if ($select2 ?? false)
     <script src="{{ asset('assets/plugins/select2/dist/js/select2.full.min.js') }}" type="text/javascript"></script>
+    <script>
+        $(".select2").select2();
+    </script>
+    @endif
 
     <script src="{{ asset('js/main.js') }}"></script>
 

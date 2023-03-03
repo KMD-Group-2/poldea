@@ -55,13 +55,6 @@ $(function () {
         $(".app-search").toggle(200);
     });
     // ==============================================================
-    // Right sidebar options
-    // ==============================================================
-    $(".right-side-toggle").click(function () {
-        $(".right-sidebar").slideDown(50);
-        $(".right-sidebar").toggleClass("shw-rside");
-    });
-    // ==============================================================
     // This is for the floating labels
     // ==============================================================
     $('.floating-labels .form-control').on('focus blur', function (e) {
@@ -85,7 +78,7 @@ $(function () {
     // Perfact scrollbar
     // ==============================================================
     $('.scroll-sidebar, .right-side-panel, .message-center, .right-sidebar').perfectScrollbar();
-	$('#chat, #msg, #comment, #todo').perfectScrollbar();  
+	$('#chat, #msg, #comment, #todo').perfectScrollbar();
     // ==============================================================
     // Resize all elements
     // ==============================================================

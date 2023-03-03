@@ -49,6 +49,6 @@ class StoreUserRequest extends FormRequest
     public function validated(): array
     {
         $password = Hash::make($this->input('password'));
-        return array_merge(parent::validated(), ['password' => $password]);
+        return array_merge(parent::validated(), ['password' => $password, 'active' => 1]);
     }
 }

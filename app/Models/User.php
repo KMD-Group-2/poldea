@@ -19,7 +19,9 @@ class User extends Authenticatable
     protected $fillable = [
         'username',
         'password',
-        'staff_id'
+        'staff_id',
+        'active',
+        'last_activity_at'
     ];
 
     /**
@@ -34,6 +36,6 @@ class User extends Authenticatable
 
     public function staff()
     {
-        return $this->belongsTo(Staff::class, 'staff_id', 'id');
+        return $this->belongsTo(Staff::class);
     }
 }
