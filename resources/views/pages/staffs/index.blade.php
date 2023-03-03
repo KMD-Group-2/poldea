@@ -105,43 +105,35 @@
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <div class="form-group row">
-                                                        <div class="col-md-12" style="text-align: center;">
-                                                            <input style="display:none" name="file" id="input-image-hidden" onchange="document.getElementById('previewing').src = window.URL.createObjectURL(this.files[0])" type="file" accept="image/jpeg, image/png" >
-                                                            <img id="previewing" name="previewing" src="{{ asset('assets/images/default-user.png') }}" style="height:200px; width:auto;cursor:pointer;" onclick="HandleBrowseClick('input-image-hidden');" title="Click to Change the Photo.">
-                                                        </div>
+                                                    <div style="text-align: center;">
+                                                        <input style="display:none" name="file" id="input-image-hidden" onchange="document.getElementById('previewing').src = window.URL.createObjectURL(this.files[0])" type="file" accept="image/jpeg, image/png" >
+                                                        <img id="previewing" name="previewing" src="{{ asset('assets/images/default-user.png') }}" style="height:200px; width:auto;cursor:pointer;" onclick="HandleBrowseClick('input-image-hidden');" title="Click to Change the Photo.">
                                                     </div>
-                                                    <div class="form-group row">
-                                                        <label class="col-md-3 col-form-label" style="text-align: right;">Department:</label>
-                                                        <div class="col-md-9">
-                                                            <select class="form-control" id="cboDepartment" style="text-align:right">
-                                                                <option value=""></option>
-                                                            </select>
-                                                        </div>
+                                                    <div class="form-group" style="margin-bottom: 5px">
+                                                        <label class="col-form-label" style="text-align: right;">Department:</label>
+                                                        <select class="form-control" id="cboDepartment" style="text-align:right">
+                                                            <option value=""></option>
+                                                        </select>
                                                     </div>
-                                                    <div class="form-group row">
-                                                        <label class="col-md-3 col-form-label" style="text-align: right;">Job Title:</label>
-                                                        <div class="col-md-9">
-                                                            <select class="form-control" id="cboJobTitle" style="text-align:right">
-                                                                <option value=""></option>
-                                                            </select>
-                                                        </div>
+                                                    <div class="form-group" style="margin-bottom: 5px">
+                                                        <label class="col-form-label" style="text-align: right;">Job Title:</label>
+                                                        <select class="form-control" id="cboJobTitle" style="text-align:right">
+                                                            <option value=""></option>
+                                                        </select>
                                                     </div>
-                                                    <div class="form-group row">
-                                                        <label class="col-md-3 col-form-label" style="text-align: right;">Name:</label>
-                                                        <div class="col-md-9">
-                                                            <input type="text" class="form-control" id="txtStaffName">
-                                                        </div>
+                                                    <div class="form-group" style="margin-bottom: 5px">
+                                                        <label class="col-form-label" style="text-align: right;">Name:</label>
+                                                        <input type="text" class="form-control" id="txtStaffName">
                                                     </div>
-                                                    <div class="form-group row">
-                                                        <label class="col-md-3 col-form-label" style="text-align: right;">Email:</label>
-                                                        <div class="col-md-9">
-                                                            <input type="text" class="form-control" id="txtEmail">
-                                                        </div>
+                                                    <div class="form-group" style="margin-bottom: 5px">
+                                                        <label class="col-form-label" style="text-align: right;">Email:</label>
+                                                        <input type="text" class="form-control" id="txtEmail">
                                                     </div>
                                                     <div class="form-group row" style="margin-bottom: 0px;">
-                                                        <div class="col-md-6"></div>
-                                                        <div class="col-md-6 btnAdd">
+                                                        <div class="col-md-6">
+                                                            <button type="button" class="btn btn-light btn-block" onclick="">Cancel</button>
+                                                        </div>
+                                                        <div class="col-md-6">
                                                             <button type="button" class="btn btn-info btn-block" onclick="add()">Add New</button>
                                                         </div>
                                                     </div>
