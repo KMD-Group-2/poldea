@@ -17,9 +17,11 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'photo',
         'username',
         'password',
+        'staff_id',
+        'active',
+        'last_activity_at'
     ];
 
     /**
@@ -34,6 +36,6 @@ class User extends Authenticatable
 
     public function staff()
     {
-        return $this->belongsTo(Staff::class, 'staff_id', 'id');
+        return $this->belongsTo(Staff::class);
     }
 }

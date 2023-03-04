@@ -47,24 +47,32 @@ class UserSeeder extends Seeder
             'username' => 'admin',
             'password' => Hash::make('password'),
             'staff_id' => 1,
+            'active' => 1,
+            'last_activity_at' => now()
         ]);
 
         $qa_manager = User::create([
             'username' => 'qa_manager',
             'password' => Hash::make('password'),
             'staff_id' => 1,
+            'active' => 1,
+            'last_activity_at' => now()
         ]);
 
         $qa_coordinator = User::create([
             'username' => 'qa_coordinator',
             'password' => Hash::make('password'),
             'staff_id' => 1,
+            'active' => 1,
+            'last_activity_at' => now()
         ]);
 
         $staff = User::create([
             'username' => 'staff',
             'password' => Hash::make('password'),
             'staff_id' => 1,
+            'active' => 1,
+            'last_activity_at' => now()
         ]);
 
         $roles = Role::all();

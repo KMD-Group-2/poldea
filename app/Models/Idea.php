@@ -25,12 +25,12 @@ class Idea extends Model
 
     public function idea_academic_year()
     {
-        return $this->belongsTo(IdeaAcademicYear::class,'academic_year_id','id');
+        return $this->belongsTo(IdeaAcademicYear::class);
     }
 
     public function idea_category()
     {
-        return $this->belongsTo(IdeaCategory::class,'category_id','id');
+        return $this->belongsTo(IdeaCategory::class);
     }
 
     public function idea_comments()

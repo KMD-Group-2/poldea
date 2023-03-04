@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\User\StoreUserRequest;
+use App\Http\Requests\User\UpdateUserRequest;
+use App\Models\Staff;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -13,17 +19,16 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('pages.users.index');
-    }
+        $users = User::with(['roles','staff','staff.department','staff.position'])->paginate(10);
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $staffs = Staff::with(['department','position'])->get();
+
+        $roles = Role::select('id','name')->get();
+
+        // For Select2 Plugin
+        view()->share(['select2' => true]);
+
+        return view('pages.users.index',compact('users','staffs','roles'));
     }
 
     /**
@@ -32,31 +37,15 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        //
-    }
+        $user = User::create($request->validated());
+        $role = Role::findById($request->validated()['role_id']);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        $user->syncPermissions($role->permissions);
+        $user->assignRole([$role->id]);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return response()->json(['success' => 'Succesfully Added']);
     }
 
     /**
@@ -66,9 +55,17 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        //
+        $user->update($request->validated());
+        $role = Role::findById($request->validated()['role_id']);
+        DB::table('model_has_roles')->where('model_id', $user->id)->delete();
+        DB::table('model_has_permissions')->where('model_id', $user->id)->delete();
+
+        $user->syncPermissions($role->permissions);
+        $user->assignRole([$role->id]);
+
+        return response()->json(['success' => 'Succesfully Updated']);
     }
 
     /**
@@ -77,8 +74,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return response()->json(['success' => 'Succesfully Deleted']);
     }
 }
