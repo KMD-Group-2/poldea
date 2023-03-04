@@ -151,11 +151,11 @@
     <!-- ============================================================== -->
 
     <!--High Charts -->
-    {{-- <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/variable-pie.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
-    <script src="https://code.highcharts.com/modules/accessibility.js"></script> --}}
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
     @if ($select2 ?? false)
     <script src="{{ asset('assets/plugins/select2/dist/js/select2.full.min.js') }}" type="text/javascript"></script>
