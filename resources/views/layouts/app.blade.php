@@ -22,6 +22,8 @@
     @endif
     <link href="{{ asset('css/style.min.css') }}" rel="stylesheet">
 
+    <link rel="stylesheet" href="{{ asset('css/page.css') }}">
+
     <style>
         .highcharts-figure,
         .highcharts-data-table table {
@@ -164,9 +166,9 @@
     </script>
     @endif
 
-    <script src="{{ asset('js/main.js') }}"></script>
-
     {{ $script ?? false }}
+
+    <script src="{{ asset('js/main.js') }}"></script>
 </body>
 
 </html>

@@ -3,8 +3,8 @@
 namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class StoreUserRequest extends FormRequest
 {
@@ -27,7 +27,6 @@ class StoreUserRequest extends FormRequest
     {
         return [
             'username' => ['required', 'string', 'max:50', 'unique:users,username'],
-            'password' => ['required', 'confirmed', Password::defaults()],
             'staff_id' => ['required'],
             'role_id' => ['required'],
         ];
@@ -48,7 +47,8 @@ class StoreUserRequest extends FormRequest
 
     public function validated(): array
     {
-        $password = Hash::make($this->input('password'));
-        return array_merge(parent::validated(), ['password' => $password, 'active' => 1]);
+        $str = Str::random(8);
+        $password = Hash::make($str);
+        return array_merge(parent::validated(), ['str' => $str,'password' => $password, 'active' => 1]);
     }
 }

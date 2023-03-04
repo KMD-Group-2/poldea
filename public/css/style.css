@@ -19748,7 +19748,7 @@ sidebar navigation
   right: -350px;
   width: 350px;
   display: none;
-  z-index: 1100;
+  z-index: 1000;
   background: #fff;
   top: 0px;
   padding-bottom: 20px;

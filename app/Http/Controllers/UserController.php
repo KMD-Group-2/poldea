@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\User\StoreUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
+use App\Jobs\SendAccountCredential;
 use App\Models\Staff;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -40,6 +41,14 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         $user = User::create($request->validated());
+
+        $credentials = [
+            'username' => $request->validated()['username'],
+            'password' => $request->validated()['str'],
+        ];
+
+        SendAccountCredential::dispatch($user->staff->email,$credentials);
+
         $role = Role::findById($request->validated()['role_id']);
 
         $user->syncPermissions($role->permissions);
@@ -77,6 +86,13 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
+
+        return response()->json(['success' => 'Succesfully Deleted']);
+    }
+
+    public function massDestroy(Request $request)
+    {
+        User::whereIn('id',$request->ids)->delete();
 
         return response()->json(['success' => 'Succesfully Deleted']);
     }
