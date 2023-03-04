@@ -33,15 +33,36 @@
                                         <th>User Name</th>
                                         <th>Email</th>
                                         <th>Department</th>
-                                        <th>Job Title</th>
-                                        <th>Status</th>
-                                        <th>Created Date <i class="fas fa-sort-amount-down"></i></th>
-                                        <th>Last Activity Date <i class="fas fa-sort-amount-down"></i></th>
+                                        <th>Position</th>
+                                        <th>Phone</th>
+                                        <th>Address</th>
+                                        <th>Created Date<th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @if ($staffs->total() > 0)
+                                        @foreach ($staffs as $staff)
                                     <tr>
+                                        <td><input type="checkbox"></td>
+                                        <td><img src="{{ $staff->photo ?? ''}} " alt="user" class="" style="width:36px;"> {{$staff->username}}</td>
+                                        <td>{{$staff->email}}</td>
+                                        <td>{{$staff->department->name}}</td>
+                                        <td>{{$staff->position->name}}</td>
+                                        <td>{{$staff->phone}}</td>
+                                        <td>{{$staff->address}}</td>
+                                        <td>{{ Carbon\Carbon::parse($staff->created_at)->format('Y-m-d') }}</td>
+                                        <td class="right-side-toggle btn"><img src="{{ asset('assets/images/edit.svg') }}"/></td>
+                                    </tr>
+                                    @endforeach
+
+                                    @else
+                                    <tr>
+                                        <td> colspan="9">No data  Available!</td>
+                                    </tr>
+                                    @endif
+
+                                    <!-- <tr>
                                         <td><input type="checkbox"></td>
                                         <td><img src="http://localhost/poldea/public/assets/images/default-user.png" alt="user" class="" style="width:36px;"> Zaw Moe Sann</td>
                                         <td>zms@gmail.com</td>
@@ -62,7 +83,7 @@
                                         <td>2020-03-02</td>
                                         <td>2023-03-05 23:23:23</td>
                                         <td class="right-side-toggle btn"><img src="{{ asset('assets/images/edit.svg') }}"/></td>
-                                    </tr>
+                                    </tr> -->
                                 </tbody>
                             </table>
                         </div>
@@ -145,7 +166,7 @@
                             </div>
                         </div>
                     </div>
-                </section>	
+                </section>
             </div>
         </div>
     </div>
@@ -156,6 +177,6 @@
         function HandleBrowseClick(input_image){
             var fileinput = document.getElementById(input_image);
             fileinput.click();
-        } 
+        }
     </script>
 </x-app-layout>
