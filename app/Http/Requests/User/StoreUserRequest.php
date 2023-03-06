@@ -3,8 +3,6 @@
 namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
 class StoreUserRequest extends FormRequest
 {
@@ -43,12 +41,5 @@ class StoreUserRequest extends FormRequest
            'staff_id.required' => 'Please Select Staff',
            'role_id.required' => 'Please Select Role',
         ];
-    }
-
-    public function validated(): array
-    {
-        $str = Str::random(8);
-        $password = Hash::make($str);
-        return array_merge(parent::validated(), ['str' => $str,'password' => $password, 'active' => 1]);
     }
 }

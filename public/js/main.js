@@ -22,11 +22,11 @@ $(function () {
         {
             _side.find('.active').attr('class','btn waves-effect waves-light btn-sm ml-auto active btn-danger').html('Inactive');
             _side.find('.status-show').html('Inactive').css('color','red');
-            _side.find('input[name=active]').removeAttr('checked');
+            _side.find('input[name=active]').prop('checked',false);
         }else{
             _side.find('.active').attr('class','btn waves-effect waves-light btn-sm ml-auto active btn-success').html('Active');
             _side.find('.status-show').html('Active').css('color','#0561FC');
-            _side.find('input[name=active]').attr('checked','checked');
+            _side.find('input[name=active]').prop('checked',true);
         }
         _side.find('.last-activity-at').html(new Date(data.last_activity_at).toLocaleString("en-US"));
         _side.find('.created-at').html(new Date(data.created_at).toLocaleString("en-US"));

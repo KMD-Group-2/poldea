@@ -9,7 +9,9 @@ use App\Models\Staff;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -40,21 +42,30 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        $user = User::create($request->validated());
+        $str = Str::random(8);
+        $password = Hash::make($str);
 
-        $credentials = [
-            'username' => $request->validated()['username'],
-            'password' => $request->validated()['str'],
-        ];
+        $request->request->add(['password' => $password,'active' => 1]);
 
-        SendAccountCredential::dispatch($user->staff->email,$credentials);
+        $user = User::create($request->all());
 
-        $role = Role::findById($request->validated()['role_id']);
+        $role = Role::findById($request->role_id);
 
         $user->syncPermissions($role->permissions);
         $user->assignRole([$role->id]);
 
-        return response()->json(['success' => 'Succesfully Added']);
+        try {
+            $credentials = [
+                'username' => $request->username,
+                'password' => $str,
+            ];
+
+            SendAccountCredential::dispatch($user->staff->email,$credentials);
+
+            return response()->json(['success' => 'Succesfully Added']);
+        } catch (\Throwable $th) {
+            return response()->json(['error' => 'Email Could not send!']);
+        }
     }
 
     /**

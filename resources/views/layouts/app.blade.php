@@ -24,6 +24,7 @@
 
     <link rel="stylesheet" href="{{ asset('css/page.css') }}">
 
+    @if ($high_chart ?? false)
     <style>
         .highcharts-figure,
         .highcharts-data-table table {
@@ -71,6 +72,7 @@
             display: none;
         }
     </style>
+    @endif
 </head>
 
 <body class="skin-blue fixed-layout">
@@ -80,7 +82,7 @@
     <div class="preloader">
         <div class="loader">
             <div class="loader__figure"></div>
-            <p class="loader__label">Elite admin</p>
+            <p class="loader__label">Poldea</p>
         </div>
     </div>
 
@@ -153,11 +155,13 @@
     <!-- ============================================================== -->
 
     <!--High Charts -->
+    @if ($high_chart ?? false)
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/variable-pie.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    @endif
 
     @if ($select2 ?? false)
     <script src="{{ asset('assets/plugins/select2/dist/js/select2.full.min.js') }}" type="text/javascript"></script>

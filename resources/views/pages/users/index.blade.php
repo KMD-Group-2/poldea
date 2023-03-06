@@ -85,8 +85,13 @@
                                                 <td>{{ Carbon\Carbon::parse($user->created_at)->format('Y-m-d') }}</td>
                                                 <td>{{ Carbon\Carbon::parse($user->last_activity_at)->format('Y-m-d') }}
                                                 </td>
-                                                <td class="right-side-toggle"><button type="button"
-                                                        class="btn icon-pencil" title="Edit"></button></td>
+                                                <td class="right-side-toggle">
+                                                    <button type="button" class="btn" title="Edit">
+                                                        <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M16.3 6.925L12.05 2.725L13.45 1.325C13.8333 0.941667 14.3043 0.75 14.863 0.75C15.421 0.75 15.8917 0.941667 16.275 1.325L17.675 2.725C18.0583 3.10833 18.2583 3.571 18.275 4.113C18.2917 4.65433 18.1083 5.11667 17.725 5.5L16.3 6.925ZM14.85 8.4L4.25 19H0V14.75L10.6 4.15L14.85 8.4Z" fill="#B6B6BB"/>
+                                                        </svg>
+                                                    </button>
+                                                </td>
                                             </tr>
                                         @endforeach
                                     @else
@@ -161,7 +166,7 @@
                     <div class="d-flex mt-4 w-100 align-items-center">
                         <h4 class="text-muted">Account Status:</h4>
                         <div class="d-flex ml-auto align-items-center">
-                            <span style="color:#0561FC" class="mr-2 status-show">Activated</span>
+                            <span class="mr-2 status-show"></span>
                             <label class="switch mb-0">
                                 <input type="checkbox" name="active">
                                 <span class="slider slider-round"></span>
@@ -213,6 +218,9 @@
                 <div class="modal-body">
                     <form action="{{ route('admin.user.store') }}" method="POST" id="StoreUserForm">
                         @csrf
+
+                        <span class="text-danger email-error"></span>
+
                         <div class="form-group" style="margin-bottom: 5px">
                             <label class="col-form-label" style="text-align: right;">Staff:</label>
                             <select class="select2 form-control custom-select" name="staff_id" style="width: 100%;">
@@ -311,6 +319,9 @@
                     success: function(res) {
                         if (res.success) {
                             location.reload();
+                        }else if(res.error){
+                            $("#StoreUserBtn").attr('disabled', false);
+                            $('.email-error').html(res.error);
                         }
                     },
                     error: function(err) {
@@ -428,6 +439,15 @@
                     $(".system-info .staff-email").html("");
                 }
             });
+
+            $(document).on('click','input[name=active]',function(){
+                if($(this).is(':checked'))
+                {
+                    $(document).find('.status-show').html('Active').css('color','#0561FC');;
+                }else{
+                    $(document).find('.status-show').html('Inactive').css('color','red');;
+                }
+            })
 
             function showDeleteModal(_this) {
                 var el = $(document).find('.ids-message');
