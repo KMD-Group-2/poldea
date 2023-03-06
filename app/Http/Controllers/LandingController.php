@@ -49,6 +49,7 @@ class LandingController extends Controller
 
     public function adminDashboard()
     {
+        view()->share(['high_chart' => true]);
         return view('pages.landing-pages.admin_dashboard');
     }
 
