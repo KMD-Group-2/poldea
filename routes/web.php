@@ -26,7 +26,15 @@ Route::middleware(['auth'])->group(function(){
 
     Route::as('admin.')->group(function(){
         Route::get('/admin-dashboard',[LandingController::class, 'adminDashboard'])->name('dashboard');
+
+        // Staff Routes
         Route::get('staff',[StaffController::class,'index'])->name('staff.index');
+        Route::post('staff',[StaffController::class,'store'])->name('staff.store');
+        Route::put('staff/{staff}',[StaffController::class,'update'])->name('staff.update');
+        Route::delete('staff/{staff}',[StaffController::class,'destroy'])->name('staff.destroy');
+        Route::post('staff/mass-destroy',[StaffController::class,'massDestroy'])->name('staff.massDestroy');
+
+        // User Routes
         Route::get('user',[UserController::class,'index'])->name('user.index');
         Route::post('user',[UserController::class,'store'])->name('user.store');
         Route::put('user/{user}',[UserController::class,'update'])->name('user.update');
