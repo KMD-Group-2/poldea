@@ -1,12 +1,12 @@
 <x-app-layout>
     <div class="container-fluid">
         <div class="row page-titles">
-            <div class="col-md-5 align-self-center">
+            <div class="col-5 align-self-center">
                 <h4 class="text-themecolor">User Management</h4>
             </div>
-            <div class="col-md-7 align-self-center text-right">
+            <div class="col-7 align-self-center text-right">
                 <div class="d-flex justify-content-end align-items-center">
-                    <button type="button" class="btn btn-info d-none d-lg-block m-l-15" data-toggle="modal"
+                    <button type="button" class="btn btn-info d-lg-block m-l-15" data-toggle="modal"
                         data-target="#AddNewUserModal"><i class="fa fa-plus-circle"></i> Add New User</button>
                 </div>
             </div>
@@ -156,8 +156,8 @@
                             </div>
 
                             <div class="form-group" style="margin-bottom: 5px">
-                                <label class="col-form-label">Position:</label>
-                                <input type="text" name="position" class="form-control" value="Position"
+                                <label class="col-form-label">Job Title:</label>
+                                <input type="text" name="position" class="form-control" value="Job Title"
                                     disabled>
                             </div>
                         </div>
@@ -301,8 +301,6 @@
 
     <x-slot name="script">
         <script>
-            var select_count = 0;
-
             $("#StoreUserForm").on('submit', function(e) {
                 e.preventDefault();
 
@@ -448,6 +446,38 @@
                     $(document).find('.status-show').html('Inactive').css('color','red');;
                 }
             })
+
+            $(".right-side-toggle").click(function () {
+                $(".error-message").remove();
+
+                $(".right-sidebar").slideDown(50);
+                $(".right-sidebar").toggleClass("shw-rside");
+
+                var data = $(this).closest("tr").data("entry");
+
+                var _side = $(document)
+                    .find(".right-sidebar");
+
+                _side.find('input[name=key]').val(data.id);
+                _side.find('.user-image').attr('src', data.staff.photo);
+                _side.find('.username').html(data.username);
+                _side.find('.position').html(data.staff.position.name);
+                if(data.active == 0)
+                {
+                    _side.find('.active').attr('class','btn waves-effect waves-light btn-sm ml-auto active btn-danger').html('Inactive');
+                    _side.find('.status-show').html('Inactive').css('color','red');
+                    _side.find('input[name=active]').prop('checked',false);
+                }else{
+                    _side.find('.active').attr('class','btn waves-effect waves-light btn-sm ml-auto active btn-success').html('Active');
+                    _side.find('.status-show').html('Active').css('color','#0561FC');
+                    _side.find('input[name=active]').prop('checked',true);
+                }
+                _side.find('.last-activity-at').html(new Date(data.last_activity_at).toLocaleString("en-US"));
+                _side.find('.created-at').html(new Date(data.created_at).toLocaleString("en-US"));
+                _side.find('.custom-select').val(data.roles[0].id);
+                _side.find('input[name=department]').val(data.staff.department.name);
+                _side.find('input[name=position]').val(data.staff.position.name);
+            });
 
             function showDeleteModal(_this) {
                 var el = $(document).find('.ids-message');
