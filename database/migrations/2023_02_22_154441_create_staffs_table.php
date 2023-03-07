@@ -21,7 +21,7 @@ class CreateStaffsTable extends Migration
             $table->string('email', 50)->unique();
             $table->string('address', 255);
             $table->string('phone', 25);
-            $table->longText('photo')->nullable();
+            $table->string('photo', 255)->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
 
