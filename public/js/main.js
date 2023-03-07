@@ -9,6 +9,8 @@ $(function () {
         e.preventDefault();
         $(".right-sidebar").slideDown(50);
         $(".right-sidebar").toggleClass("shw-rside");
+
+        $(this).closest('.r-panel-body').find('form').trigger('reset');
     })
 
     // ==============================================================

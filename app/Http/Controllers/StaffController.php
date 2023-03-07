@@ -50,7 +50,7 @@ class StaffController extends Controller
     {
         $staff->update($request->validated());
 
-        return response()->json(['success' => 'Succesfully Added']);
+        return response()->json(['success' => 'Succesfully Updated']);
     }
 
     /**

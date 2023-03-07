@@ -30,16 +30,16 @@ Route::middleware(['auth'])->group(function(){
         // Staff Routes
         Route::get('staff',[StaffController::class,'index'])->name('staff.index');
         Route::post('staff',[StaffController::class,'store'])->name('staff.store');
-        Route::put('staff/{staff}',[StaffController::class,'update'])->name('staff.update');
+        Route::post('staff/{staff}',[StaffController::class,'update'])->name('staff.update');
         Route::delete('staff/{staff}',[StaffController::class,'destroy'])->name('staff.destroy');
-        Route::post('staff/mass-destroy',[StaffController::class,'massDestroy'])->name('staff.massDestroy');
+        Route::post('staff/mass/destroy',[StaffController::class,'massDestroy'])->name('staff.massDestroy');
 
         // User Routes
         Route::get('user',[UserController::class,'index'])->name('user.index');
         Route::post('user',[UserController::class,'store'])->name('user.store');
         Route::put('user/{user}',[UserController::class,'update'])->name('user.update');
         Route::delete('user/{user}',[UserController::class,'destroy'])->name('user.destroy');
-        Route::post('user/mass-destroy',[UserController::class,'massDestroy'])->name('user.massDestroy');
+        Route::post('user/mass/destroy',[UserController::class,'massDestroy'])->name('user.massDestroy');
 
         Route::get('academic-year',[AcademicYearController::class,'index'])->name('academic-year.index');
         Route::get('admin-idea-report',[ReportManagementController::class,'adminReport'])->name('report');

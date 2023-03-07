@@ -110,22 +110,18 @@
         <div class="slimscrollright">
             <div class="rpanel-title bg-white text-dark"> <b>Staff Details</b> </div>
             <div class="r-panel-body mb-5">
-                <form action="{{ route('admin.staff.update', ['staff' => ':id']) }}" method="PUT"
-                    id="UpdateStaffForm">
+                <form action="{{ route('admin.staff.update', ['staff' => ':id']) }}" method="POST"
+                    id="UpdateStaffForm" enctype="multipart/form-data">
                     @csrf
 
                     <input type="hidden" name="key" disabled>
 
                     <div class="form-group text-center" style="margin-bottom: 5px">
-                        <label for="col-form-label" id="UpdateUploadPhoto">
-                            <img id="UpdateUserPhoto"
-                                src=""
-                                class="rounded" style="height:100px; width:100px; cursor:pointer;"
-                                title="Click to Change the Photo.">
+                        <label for="col-form-label" onclick="OpenFile(this)">
+                            <img src="" class="rounded user-photo"
+                                style="height:100px; width:100px; cursor:pointer;" title="Click to Change the Photo.">
                         </label>
-                        <input class="d-none" name="photo" id="UpdatePhoto" type="file"
-                            accept="image/jpeg, image/png">
-                        <input type="hidden" name="old_photo">
+                        <input class="d-none" name="photo" type="file" id="filePhoto" accept="image/jpeg, image/png" onchange="OnChangeFile(this)">
                     </div>
 
                     <div class="form-group" style="margin-bottom: 5px">
@@ -217,14 +213,13 @@
                         @csrf
 
                         <div class="form-group text-center" style="margin-bottom: 5px">
-                            <label for="col-form-label" id="upload-photo">
-                                <img id="user-photo"
-                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAsTAAALEwEAmpwYAAACjUlEQVR4nO2cP4oUQRSHPxYFxWjxAIKJKwaaeARD7yDoATyCZh3suBcQvICp6wnMzFwDA83FbF1MVihpaGFYx6me6qr9VXX/Pnhpz3vv6/rTUFNgjDHGGGOMMcYYY4wxxhjzL3eBV8AJcAaEhccZ8AlYAQclX5irwBFwXkHRodI4H0RcKdH89xUUGBqJ49wSjiooKjQW/UjINud72mFnAX3P7uQQ4Lef5FFwmEPASQXDOTQa/e5oMj8rKCQ0Gqc5BMR+ZOmE0v2xgO1YgBgLEGMBYixAjAWIsQAxFiDGAsRYgBgLEGMBYixAjAWIsQAxFiDGAsRYgBgLEGMBI3gOPKEMFhDhMfB7OER7j/xYwBYeXjjB/Rm4QV4s4D/cBr5vaNAb8mIBG7gJfNnSnFLrQRFaOxd0HfgQybnUetCsgGdAl+E5e8DbkccGS6wHTQq4D/wantVd8knu3OtBcwL2ga8XntdN2OunHKCtnlIF7A1/5dn0zC5xr28BO/Ay0rAuca/vETCCRyPf2C5xr+8paAu3gB87NKlL3OvnWgPka0jOBK4BHxOa1CXs9S1gA68nNKpL2Ot7BKzxNEOzXhT41+ZlzgBJ5EjgwdrHVm0xewH9x9a3Chodlihg28dWqCRK1p+FKQnEPrZCBVGy/izIExAjr1+egBh5/fIExMjrlycgRl6/PAEx8vrlCYiR1y9PQIy8fnkCYuT1n45IQhkx1PlNFlj7lWUxmhewqiDJsGQBB5VfWxmjeQG1j4IYsxDQX8P7roJkw1IF/JWwqnA6ijEbAetrwuFwKWkNd4rGmJ2ApRHcQC0WIMYCxFiAGAsQYwFiLECMBYixADEWIMYCxFiAGAsQYwFiLIAZC/gDCOC6gupql84AAAAASUVORK5CYII="
-                                    class="rounded" style="height:100px; width:100px; cursor:pointer;"
+                            <label for="col-form-label upload-photo" onclick="OpenFile(this)">
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAsTAAALEwEAmpwYAAACjUlEQVR4nO2cP4oUQRSHPxYFxWjxAIKJKwaaeARD7yDoATyCZh3suBcQvICp6wnMzFwDA83FbF1MVihpaGFYx6me6qr9VXX/Pnhpz3vv6/rTUFNgjDHGGGOMMcYYY4wxxhjzL3eBV8AJcAaEhccZ8AlYAQclX5irwBFwXkHRodI4H0RcKdH89xUUGBqJ49wSjiooKjQW/UjINud72mFnAX3P7uQQ4Lef5FFwmEPASQXDOTQa/e5oMj8rKCQ0Gqc5BMR+ZOmE0v2xgO1YgBgLEGMBYixAjAWIsQAxFiDGAsRYgBgLEGMBYixAjAWIsQAxFiDGAsRYgBgLEGMBI3gOPKEMFhDhMfB7OER7j/xYwBYeXjjB/Rm4QV4s4D/cBr5vaNAb8mIBG7gJfNnSnFLrQRFaOxd0HfgQybnUetCsgGdAl+E5e8DbkccGS6wHTQq4D/wantVd8knu3OtBcwL2ga8XntdN2OunHKCtnlIF7A1/5dn0zC5xr28BO/Ay0rAuca/vETCCRyPf2C5xr+8paAu3gB87NKlL3OvnWgPka0jOBK4BHxOa1CXs9S1gA68nNKpL2Ot7BKzxNEOzXhT41+ZlzgBJ5EjgwdrHVm0xewH9x9a3Chodlihg28dWqCRK1p+FKQnEPrZCBVGy/izIExAjr1+egBh5/fIExMjrlycgRl6/PAEx8vrlCYiR1y9PQIy8fnkCYuT1n45IQhkx1PlNFlj7lWUxmhewqiDJsGQBB5VfWxmjeQG1j4IYsxDQX8P7roJkw1IF/JWwqnA6ijEbAetrwuFwKWkNd4rGmJ2ApRHcQC0WIMYCxFiAGAsQYwFiLECMBYixADEWIMYCxFiAGAsQYwFiLIAZC/gDCOC6gupql84AAAAASUVORK5CYII="
+                                    class="rounded user-photo" style="height:100px; width:100px; cursor:pointer;"
                                     title="Click to Change the Photo.">
                             </label>
-                            <input class="d-none" name="photo" id="filePhoto" type="file"
-                                accept="image/jpeg, image/png">
+                            <input name="photo" id="filePhoto" type="file" onchange="OnChangeFile(this)"
+                                accept="image/jpeg, image/png" style="display: none;">
                         </div>
 
                         <div class="form-group" style="margin-bottom: 5px">
@@ -313,19 +308,20 @@
 
                 $(".error-message").remove();
 
-                var formData = $(this).serializeArray();
+                var formData = new FormData(this);
 
-                $.each($(this).find("#filePhoto")[0].files, function(i, file) {
-                    formData.push({
-                        name: 'photo',
-                        value: file
-                    });
-                })
-
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
                 $.ajax({
                     url: $(this).attr('action'),
                     method: $(this).attr('method'),
                     data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
                     success: function(res) {
                         if (res.success) {
                             location.reload();
@@ -349,23 +345,23 @@
                 e.preventDefault();
 
                 $("#UpdateFormBtn").attr('disabled', true);
-                let action = $(this).attr('action');
-                let formAction = action.replace(':id', $(this).find('input[name=key]').val());
 
                 $(".error-message").remove();
-                var formData = $(this).serializeArray();
 
-                $.each($(this).find("#filePhoto")[0].files, function(i, file) {
-                    formData.push({
-                        name: 'photo',
-                        value: file
-                    });
-                })
+                var formData = new FormData(this);
 
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
                 $.ajax({
-                    url: formAction,
+                    url: $(this).attr('action').replace(':id', $(this).find('input[name=key]').val()),
                     method: $(this).attr('method'),
                     data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
                     success: function(res) {
                         if (res.success) {
                             location.reload();
@@ -409,7 +405,7 @@
                     })
 
                     formData = {
-                        ids: ids,
+                        "ids" : ids,
                         "_token": "{{ csrf_token() }}",
                     };
                 }
@@ -432,21 +428,10 @@
 
             $("#AddNewStaffModal").on("hidden.bs.modal", function() {
                 $(".error-message").remove();
+                $(this).find('form').trigger('reset');
             });
 
-            $('.select2').on('select2:select', function(e) {
-                if (e.params.data.id != "") {
-                    let email = $(this).find(':selected').data('email');
-
-                    $(".system-info").removeClass('d-none');
-                    $(".system-info .staff-email").html(email);
-                } else {
-                    $(".system-info").addClass('d-none');
-                    $(".system-info .staff-email").html("");
-                }
-            });
-
-            $(".right-side-toggle").click(function () {
+            $(".right-side-toggle").click(function() {
                 $(".error-message").remove();
 
                 $(".right-sidebar").slideDown(50);
@@ -458,8 +443,7 @@
                     .find(".right-sidebar");
 
                 _side.find('input[name=key]').val(data.id);
-                _side.find('#UpdateUserPhoto').attr('src', data.photo);
-                _side.find('input[name=old_photo]').val(data.photo);
+                _side.find('.user-photo').attr('src', data.photo);
                 _side.find('input[name=name]').val(data.name);
                 _side.find('input[name=email]').val(data.email);
                 _side.find('input[name=phone]').val(data.phone);
@@ -482,38 +466,20 @@
                         'data-delete', $(_this).data('delete'));
             }
 
-                // ==============================================================
-                // Image Selector
-                // ==============================================================
-                $("#upload-photo").on("click", function () {
-                    $("#filePhoto").click();
-                });
-                let imgInp = document.getElementById("filePhoto");
+            // ==============================================================
+            // Image Selector
+            // ==============================================================
+            function OpenFile(label) {
+                $(label).closest('div').find("#filePhoto").click();
+            }
 
-                if (imgInp) {
-                    let img = document.getElementById("user-photo");
-                    imgInp.onchange = (evt) => {
-                        const [file] = imgInp.files;
-                        if (file) {
-                            img.src = URL.createObjectURL(file);
-                        }
-                    };
+            function OnChangeFile(input) {
+                let reader = new FileReader();
+                reader.onload = (e) => {
+                    $(input).closest('form').find('.user-photo').attr('src', e.target.result);
                 }
-
-                $("#UploadPhoto").on("click", function () {
-                    $("#UpdatePhoto").click();
-                });
-                let imgInput = document.getElementById("UpdatePhoto");
-
-                if (imgInput) {
-                    let img1 = document.getElementById("UpdateUserPhoto");
-                    imgInput.onchange = (evt) => {
-                        const [file] = imgInput.files;
-                        if (file) {
-                            img1.src = URL.createObjectURL(file);
-                        }
-                    };
-                }
+                reader.readAsDataURL(input.files[0]);
+            }
         </script>
     </x-slot>
 </x-app-layout>
