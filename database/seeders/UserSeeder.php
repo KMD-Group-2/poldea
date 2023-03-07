@@ -5,8 +5,6 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
 
 class UserSeeder extends Seeder
 {
@@ -17,82 +15,38 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $data = [
-            'admin' => [
-                'admin.dashboard',
-                'admin.academic_year',
-                'admin.staff',
-                'admin.user',
-                'admin.report'
-            ],
-            'qa_manager' => [
-                'qa_manager.dashboard',
-                'qa_manager.category',
-                'qa_manager.report'
-            ],
-            'qa_coordinator' => [
-                'qa_coordinator.dashboard',
-                'qa_coordinator.departmentStaff',
-                'qa_coordinator.report'
-            ],
-            'staff' => [
-                'staff.idea',
-                'staff.createIdea',
-                'staff.publishedIdea',
-                'staff.draftIdea',
-            ]
-        ];
+        app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
-        $admin = User::create([
-            'username' => 'admin',
-            'password' => Hash::make('password'),
-            'staff_id' => 1,
+        $adminUser = User::create([
+            'username' => env('ADMIN_USERNAME', 'admin'),
+            'password' => Hash::make(env('ADMIN_PASSWORD', 'password')),
             'active' => 1,
-            'last_activity_at' => now()
+            'staff_id' => 1,
+        ]);
+        $qamUser = User::create([
+            'username' => env('QAM_USERNAME', 'qa.manager'),
+            'password' => Hash::make(env('QAM_PASSWORD', 'password')),
+            'active' => 1,
+            'staff_id' => 2,
+        ]);
+        $qacUser = User::create([
+            'username' => env('QAC_USERNAME', 'qa.coordinator'),
+            'password' => Hash::make(env('QAC_PASSWORD', 'password')),
+            'active' => 1,
+            'staff_id' => 2,
+        ]);
+        $staffUser = User::create([
+            'username' => 'aungaung',
+            'password' => Hash::make('password'),
+            'staff_id' => 3,
         ]);
 
-        $qa_manager = User::create([
-            'username' => 'qa_manager',
-            'password' => Hash::make('password'),
-            'staff_id' => 1,
-            'active' => 1,
-            'last_activity_at' => now()
-        ]);
+        $adminUser->assignRole('Admin');
 
-        $qa_coordinator = User::create([
-            'username' => 'qa_coordinator',
-            'password' => Hash::make('password'),
-            'staff_id' => 1,
-            'active' => 1,
-            'last_activity_at' => now()
-        ]);
+        $qamUser->assignRole('QA Manager');
 
-        $staff = User::create([
-            'username' => 'staff',
-            'password' => Hash::make('password'),
-            'staff_id' => 1,
-            'active' => 1,
-            'last_activity_at' => now()
-        ]);
+        $qacUser->assignRole('QA Coordinator');
 
-        $roles = Role::all();
-
-        foreach($roles as $role)
-        {
-            if($role->name == 'Admin')
-            {
-                $admin->syncPermissions($data['admin']);
-                $admin->assignRole([$role->id]);
-            } elseif($role->name == 'QA-Manager') {
-                $qa_manager->syncPermissions($data['qa_manager']);
-                $qa_manager->assignRole([$role->id]);
-            } elseif($role->name == 'QA-Coordinator') {
-                $qa_coordinator->syncPermissions($data['qa_coordinator']);
-                $qa_coordinator->assignRole([$role->id]);
-            } else{
-                $staff->syncPermissions($data['staff']);
-                $staff->assignRole([$role->id]);
-            }
-        }
+        $staffUser->assignRole('Staff');
     }
 }
