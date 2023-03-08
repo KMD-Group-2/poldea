@@ -21,9 +21,9 @@
 
     @include('common/loading-screen')
 
-    <div>
+    <section id="wrapper">
         {{ $slot }}
-    </div>
+    </section>
 
     <script src="/js/jquery-3.2.1.min.js"></script>
     <script src="/js/popper.min.js"></script>
