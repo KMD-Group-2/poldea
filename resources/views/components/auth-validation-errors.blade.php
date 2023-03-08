@@ -2,14 +2,6 @@
 
 @if ($errors->any())
     <div {{ $attributes }}>
-        <div>
-            {{ __('Whoops! Something went wrong.') }}
-        </div>
-
-        <ul class="mt-3">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
+        {{ $errors->first('username') }}
     </div>
 @endif
