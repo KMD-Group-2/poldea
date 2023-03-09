@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="/css/style.min.css" />
     <link rel="stylesheet" href="/css/dashboard.css" />
 
+    {{ $css ?? "" }}
+
     <title>{{ config('app.name', 'Laravel') }}</title>
 
 </head>

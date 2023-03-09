@@ -4,7 +4,7 @@
             <ul id="sidebar-nav" class="in">
                 @hasanyrole('Admin|QA Manager|QA Coordinator')
                     <li>
-                        <a href="#">
+                        <a href="{{ route('dashboard.index') }}">
                             <i class="fas fa-home"></i>
                             <span class="hide-menu">Dashboard</span>
                         </a>
