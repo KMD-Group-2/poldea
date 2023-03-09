@@ -1,6 +1,8 @@
 <x-app-layout>
-    <x-topbar :username="$username" :role="$role"/>
+    <x-topbar/>
+
     <x-sidebar/>
+
     @push('scripts')
         <script src="/js/dashboard.js"></script>
     @endpush
