@@ -24,11 +24,15 @@
                                 class=""
                             />
                              <span class="hidden-md-down">
-                                {{ $username }} ({{ $role }} Role) &nbsp;
+                                {{ $username }} &nbsp;
                                 <i class="fa fa-angle-down"></i>
                             </span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
+                        <span class="dropdown-item">{{ $role }}</span>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
                         <a
                             href="javascript:void(0)"
                             class="dropdown-item"
