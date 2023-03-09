@@ -18,12 +18,17 @@ class StaffController extends Controller
      */
     public function index()
     {
-        $staffs = Staff::with(['department','position'])->paginate(10);
+        $staff = Staff::with(['department','position'])->paginate(10);
+        $depts = Department::select('id', 'name')->get();
+        $positions = Position::select('id', 'name')->get();
 
-        $departments = Department::select('id','name')->get();
-        $positions = Position::select('id','name')->get();
+        $data = [
+            'departments' => $depts,
+            'positions' => $positions,
+            'staff' => $staff,
+        ];
 
-        return view('pages.staffs.index',compact('staffs','departments','positions'));
+        return view('staff.staff', $data);
     }
 
     /**
