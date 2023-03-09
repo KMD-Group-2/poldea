@@ -7,17 +7,13 @@ use Illuminate\View\Component;
 
 class Topbar extends Component
 {
-    public string $username;
-    public string $role;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct(string $username, string $role)
+    public function __construct()
     {
-        $this->username = $username;
-        $this->role = $role;
     }
 
     /**

@@ -16,7 +16,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="{{ route('staff.index') }}">
                             <i class="fas fa-id-badge"></i>
                             <span class="hide-menu">Staff</span>
                         </a>
