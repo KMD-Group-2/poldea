@@ -5,8 +5,6 @@
             <div class="card-body">
                 <form class="form-horizontal form-material" id="loginform" action="{{ route('login') }}" method="POST">
                     @csrf
-                    <!-- Session Status -->
-                    <x-auth-session-status class="alert alert-success" :status="session('status')" />
 
                     <!-- Validation Errors -->
                     <x-auth-validation-errors class="alert alert-danger" :errors="$errors" />
