@@ -235,7 +235,7 @@ File: css
 .wizard-content .wizard.wizard-circle>.steps>ul>li.current:after,
 .wizard-content .wizard.wizard-circle>.steps>ul>li.current~li:after,
 .wizard-content .wizard.wizard-circle>.steps>ul>li.current~li:before {
-    background-color: #F3F3F3
+    background-color: #C4CDE480
 }
 
 .wizard-content .wizard.wizard-circle>.steps .step {

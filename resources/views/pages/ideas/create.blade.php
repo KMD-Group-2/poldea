@@ -6,20 +6,11 @@
         <!-- ============================================================== -->
         <!-- Bread crumb and right sidebar toggle -->
         <!-- ============================================================== -->
-        <div class="row page-titles">
+        <div class=" m-4">
             <div class="col-md-5 align-self-center">
-                <h4 class="text-themecolor">Form Wizards</h4>
+                <h4 class="font-bold">Create Idea Post </h4>
             </div>
-            <div class="col-md-7 align-self-center text-right">
-                <div class="d-flex justify-content-end align-items-center">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                        <li class="breadcrumb-item active">Form Wizards</li>
-                    </ol>
-                    <button type="button" class="btn btn-info d-none d-lg-block m-l-15"><i
-                            class="fa fa-plus-circle"></i> Create New</button>
-                </div>
-            </div>
+
         </div>
         <!-- ============================================================== -->
         <!-- End Bread crumb and right sidebar toggle -->
@@ -27,202 +18,218 @@
         <!-- ============================================================== -->
         <!-- Start Page Content -->
         <!-- ============================================================== -->
+
         <!-- Validation wizard -->
         <div class="row" id="validation">
             <div class="col-12">
-                <div class="card wizard-content">
-                    <div class="card-body">
-                        <h4 class="card-title">Step wizard with validation</h4>
-                        <h6 class="card-subtitle">You can us the validation like what we did</h6>
+                <div class="wizard-content">
+                    <div>
                         <form action="#" class="validation-wizard wizard-circle">
                             <!-- Step 1 -->
-                            <h6>Step 1</h6>
+                            <h6>Add Information</h6>
                             <section>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="wfirstName2"> First Name : <span class="danger">*</span>
-                                            </label>
-                                            <input type="text" class="form-control required" id="wfirstName2"
-                                                name="firstName">
+                                <div class="card radius">
+                                    <div class="card-body  mt-4 mb-4 mr-5 ml-5">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="wlocation2"> Category : <span class="danger">*</span>
+                                                    </label>
+                                                    <select class="custom-select form-control required" id="wlocation2"
+                                                        name="location">
+                                                        <option value="">Select Category</option>
+                                                        <option value="India">Technology</option>
+                                                        <option value="USA">Finicial</option>
+                                                        <option value="Dubai">Management</option>
+                                                        <option value="Dubai">Educations</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="wdate2">Academic Year :</label>
+                                                    <input type="date" class="form-control required" id="wdate2"
+                                                        value="<?php echo date('Y-m-d'); ?>">
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="wlastName2"> Last Name : <span class="danger">*</span> </label>
-                                            <input type="text" class="form-control required" id="wlastName2"
-                                                name="lastName">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="wtitle"> Title : <span class="danger">*</span>
+                                                    </label>
+                                                    <input type="text" class="form-control required" id="wtitle"
+                                                        name="title">
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="wemailAddress2"> Email Address : <span class="danger">*</span>
-                                            </label>
-                                            <input type="email" class="form-control required" id="wemailAddress2"
-                                                name="emailAddress">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="wemailAddress2"> Description : <span
+                                                            class="danger">*</span>
+                                                    </label>
+                                                    <textarea class="textarea_editor form-control " id="wdescription" name="description" rows="7"
+                                                        placeholder="Enter text description..."></textarea>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="wphoneNumber2">Phone Number :</label>
-                                            <input type="tel" class="form-control" id="wphoneNumber2">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="wlocation2"> Select City : <span class="danger">*</span>
-                                            </label>
-                                            <select class="custom-select form-control required" id="wlocation2"
-                                                name="location">
-                                                <option value="">Select City</option>
-                                                <option value="India">India</option>
-                                                <option value="USA">USA</option>
-                                                <option value="Dubai">Dubai</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="wdate2">Date of Birth :</label>
-                                            <input type="date" class="form-control" id="wdate2">
-                                        </div>
+
                                     </div>
                                 </div>
                             </section>
                             <!-- Step 2 -->
-                            <h6>Step 2</h6>
+                            <h6>Upload files</h6>
                             <section>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="jobTitle2">Company Name :</label>
-                                            <input type="text" class="form-control required" id="jobTitle2">
+                                <div class="card radius">
+                                    <div class="card-body  mt-4 mb-4 mr-5 ml-5">
+
+                                        <div class="card b-all shadow-none">
+                                            <div class="">
+                                                <div class="row">
+                                                    <div class="col-md-8 align-self-center">
+                                                        <h5 class="card-title">Your message title goes here
+                                                            Your message title goes here</h5>
+                                                    </div>
+                                                    <div class="col-md-4 align-self-center text-right">
+                                                        <span class="label label-info">Information
+                                                            Technology</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <hr class="m-t-0">
+                                            </div>
+                                            <div class=" p-t-0">
+                                                <div class="row m-b-10">
+                                                    <div class="col-md-8 d-flex">
+                                                        <div class="align-self-center">
+                                                            <a href="javascript:void(0)"><img
+                                                                    src="{{ asset('assets/images/default-user.png') }}"
+                                                                    alt="user" width="40"
+                                                                    class="img-circle" /></a>
+                                                        </div>
+                                                        <div class="p-l-10">
+                                                            <h6 class="m-b-0">Eugene W. Petersontt</h6>
+                                                            <small class="text-muted">From: ewp@domain.com</small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 align-self-center text-right">
+                                                        <small class="text-muted">Created: 12 JUN 2023 | Close : 12
+                                                            JUN 2023</small>
+                                                    </div>
+                                                </div>
+                                                <p>Lorem ipsum dolor sit amet, pri utroque tincidunt in, maiestatis
+                                                    mnesarchum ius in. Eu diceret suscipiantur eum. Usu cibo iriure
+                                                    in, natum inimicus ad sea. Stet impetus scripserit et est, amet
+                                                    consequat mei ei, eius postea nostrud nam ne. Augue democritum
+                                                    necessitatibus an duo, solum probatus ocurreret ut sit. Nec
+                                                    prima moderatius ex, </p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="webUrl3">Company URL :</label>
-                                            <input type="url" class="form-control required" id="webUrl3"
-                                                name="webUrl3">
+                                        <div class="col-md-12">
+                                            <div class="row justify-content-end">
+                                                <div class="d-flex">
+                                                    <a class="btn btn-info d-none d-lg-block m-l-15" href="#"><i
+                                                            class="fa far fa-images"></i>
+                                                        Upload
+                                                        Image </a>
+                                                </div>
+                                                <div class="d-flex">
+                                                    <a class="btn btn-info d-none d-lg-block m-l-15" href="#"><i
+                                                            class="fa fa-upload"></i> Upload
+                                                        File</a>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label for="shortDescription3">Short Description :</label>
-                                            <textarea name="shortDescription" id="shortDescription3" rows="6" class="form-control"></textarea>
+                                        <div class="row mt-5">
+                                            <div class="col-md-6">
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="d-flex">
+                                                    <input type="date" class="form-control"
+                                                        value="<?php echo date('Y-m-d'); ?>">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-5 ">
+
                                         </div>
                                     </div>
                                 </div>
                             </section>
                             <!-- Step 3 -->
-                            <h6>Step 3</h6>
+                            <h6>Preview Post</h6>
                             <section>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="wint1">Interview For :</label>
-                                            <input type="text" class="form-control required" id="wint1">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="wintType1">Interview Type :</label>
-                                            <select class="custom-select form-control required" id="wintType1"
-                                                data-placeholder="Type to search cities" name="wintType1">
-                                                <option value="Banquet">Normal</option>
-                                                <option value="Fund Raiser">Difficult</option>
-                                                <option value="Dinner Party">Hard</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="wLocation1">Location :</label>
-                                            <select class="custom-select form-control required" id="wLocation1"
-                                                name="wlocation">
-                                                <option value="">Select City</option>
-                                                <option value="India">India</option>
-                                                <option value="USA">USA</option>
-                                                <option value="Dubai">Dubai</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="wjobTitle2">Interview Date :</label>
-                                            <input type="date" class="form-control required" id="wjobTitle2">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Requirements :</label>
-                                            <div class="c-inputs-stacked">
-                                                <label class="inline custom-control custom-checkbox block">
-                                                    <input type="checkbox" class="custom-control-input"> <span
-                                                        class="custom-control-indicator"></span> <span
-                                                        class="custom-control-description ml-0">Employee</span>
-                                                </label>
-                                                <label class="inline custom-control custom-checkbox block">
-                                                    <input type="checkbox" class="custom-control-input"> <span
-                                                        class="custom-control-indicator"></span> <span
-                                                        class="custom-control-description ml-0">Contract</span>
-                                                </label>
+                                <div class="card radius">
+                                    <div class="card-body  mt-4 mb-4 mr-5 ml-5">
+
+                                        <div class="card b-all shadow-none">
+                                            <div class="">
+                                                <div class="row">
+                                                    <div class="col-md-8 align-self-center">
+                                                        <h5 class="card-title">Your message title goes here
+                                                            Your message title goes here</h5>
+                                                    </div>
+                                                    <div class="col-md-4 align-self-center text-right">
+                                                        <span class="label label-info">Information
+                                                            Technology</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <hr class="m-t-0">
+                                            </div>
+                                            <div class=" p-t-0">
+                                                <div class="row m-b-10">
+                                                    <div class="col-md-8 d-flex">
+                                                        <div class="align-self-center">
+                                                            <a href="javascript:void(0)"><img
+                                                                    src="{{ asset('assets/images/default-user.png') }}"
+                                                                    alt="user" width="40"
+                                                                    class="img-circle" /></a>
+                                                        </div>
+                                                        <div class="p-l-10">
+                                                            <h6 class="m-b-0">Eugene W. Petersontt</h6>
+                                                            <small class="text-muted">From: ewp@domain.com</small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 align-self-center text-right">
+                                                        <small class="text-muted">Created: 12 JUN 2023 | Close : 12
+                                                            JUN 2023</small>
+                                                    </div>
+                                                </div>
+                                                <p>Lorem ipsum dolor sit amet, pri utroque tincidunt in, maiestatis
+                                                    mnesarchum ius in. Eu diceret suscipiantur eum. Usu cibo iriure
+                                                    in, natum inimicus ad sea. Stet impetus scripserit et est, amet
+                                                    consequat mei ei, eius postea nostrud nam ne. Augue democritum
+                                                    necessitatibus an duo, solum probatus ocurreret ut sit. Nec
+                                                    prima moderatius ex, </p>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </section>
-                            <!-- Step 4 -->
-                            <h6>Step 4</h6>
-                            <section>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="behName1">Behaviour :</label>
-                                            <input type="text" class="form-control required" id="behName1">
+                                        <div class="custom-control custom-checkbox mr-sm-2 mb-3">
+                                            <input type="checkbox" class="custom-control-input" id="checkbox0"
+                                                value="check">
+                                            <label class="custom-control-label" for="checkbox0">Post as
+                                                Anonymous</label>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="participants1">Confidance</label>
-                                            <input type="text" class="form-control required" id="participants1">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="participants1">Result</label>
-                                            <select class="custom-select form-control required" id="participants1"
-                                                name="location">
-                                                <option value="">Select Result</option>
-                                                <option value="Selected">Selected</option>
-                                                <option value="Rejected">Rejected</option>
-                                                <option value="Call Second-time">Call Second-time</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="decisions1">Comments</label>
-                                            <textarea name="decisions" id="decisions1" rows="4" class="form-control"></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Rate Interviwer :</label>
-                                            <div class="c-inputs-stacked">
-                                                <label class="inline custom-control custom-checkbox block">
-                                                    <input type="checkbox" class="custom-control-input"> <span
-                                                        class="custom-control-indicator"></span> <span
-                                                        class="custom-control-description ml-0">1 star</span> </label>
-                                                <label class="inline custom-control custom-checkbox block">
-                                                    <input type="checkbox" class="custom-control-input"> <span
-                                                        class="custom-control-indicator"></span> <span
-                                                        class="custom-control-description ml-0">2 star</span> </label>
-                                                <label class="inline custom-control custom-checkbox block">
-                                                    <input type="checkbox" class="custom-control-input"> <span
-                                                        class="custom-control-indicator"></span> <span
-                                                        class="custom-control-description ml-0">3 star</span> </label>
-                                                <label class="inline custom-control custom-checkbox block">
-                                                    <input type="checkbox" class="custom-control-input"> <span
-                                                        class="custom-control-indicator"></span> <span
-                                                        class="custom-control-description ml-0">4 star</span> </label>
-                                                <label class="inline custom-control custom-checkbox block">
-                                                    <input type="checkbox" class="custom-control-input"> <span
-                                                        class="custom-control-indicator"></span> <span
-                                                        class="custom-control-description ml-0">5 star</span> </label>
+                                        <p>Lorem ipsum dolor sit amet, pri utroque tincidunt in, maiestatis mnesarchum
+                                            ius in. Eu diceret suscipiantur eum. Usu cibo iriure in, natum inimicus ad
+                                            sea. Stet impetus scripserit et est, </p>
+
+                                        <h6 class="m-b-0 mt-5">Idea Closure Date</h6>
+                                        <div class="row mt-2">
+                                            <div class="col-md-6">
                                             </div>
+                                            <div class="col-md-12">
+                                                <div class="d-flex">
+                                                    <input type="date" class="form-control"
+                                                        value="<?php echo date('Y-m-d'); ?>">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-5 ">
+
                                         </div>
                                     </div>
                                 </div>
