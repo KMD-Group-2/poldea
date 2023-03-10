@@ -6,6 +6,7 @@ use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ReportManagementController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,6 +44,14 @@ Route::middleware(['auth'])->group(function(){
 
         Route::get('academic-year',[AcademicYearController::class,'index'])->name('academic-year.index');
         Route::get('admin-idea-report',[ReportManagementController::class,'adminReport'])->name('report');
+
+
+        // Category Routes
+        Route::get('category',[CategoryController::class,'index'])->name('category.index');
+        Route::post('category',[CategoryController::class,'store'])->name('category.store');
+        Route::put('category/{category}',[CategoryController::class,'update'])->name('category.update');
+        Route::delete('category/{category}',[CategoryController::class,'destroy'])->name('category.destroy');
+        Route::post('category/mass/destroy',[CategoryController::class,'massDestroy'])->name('category.massDestroy');
     });
 
     Route::as('qa_m.')->group(function(){
