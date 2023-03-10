@@ -8,7 +8,7 @@ ul.wysihtml5-toolbar {
 	border-top-left-radius: 3px;
 	border-top-right-radius: 3px;
 	border-bottom:0px;
-	
+
 }
 
 ul.wysihtml5-toolbar::after {
@@ -29,6 +29,17 @@ ul.wysihtml5-toolbar a{
 	margin: 0px;
 }
 
+ul.wysihtml5-toolbar a{
+	color: #343a40!important;
+}
+
+ul.wysihtml5-toolbar .dropdown .dropdown-menu li{
+    padding: 5px;
+}
+
+ul.wysihtml5-toolbar .dropdown .dropdown-menu li:hover{
+    background-color: #f6f6f6;
+}
 
 ul.wysihtml5-toolbar a.btn{
 	padding: 12px 15px;

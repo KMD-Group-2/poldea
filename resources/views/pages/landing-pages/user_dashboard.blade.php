@@ -9,7 +9,7 @@
             </div>
             <div class="col-md-7 align-self-center text-right">
                 <div class="d-flex justify-content-end align-items-center">
-                    <a class="btn btn-info d-none d-lg-block m-l-15" href="create-idea"><i class="fa fa-plus-circle"></i>
+                    <a class="btn btn-info d-none d-lg-block m-l-15" href="{{ route('staff.idea.add-info') }}"><i class="fa fa-plus-circle"></i>
                         Create New Idea</a>
                 </div>
             </div>

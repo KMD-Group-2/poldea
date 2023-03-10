@@ -8,16 +8,10 @@
                     <a class="waves-effect waves-dark" href="{{ route('staff.dashboard') }}"><i class="icon-speedometer"></i><span class="hide-menu">Idea</span></a>
                 </li>
                 <li>
-                    <a class="waves-effect waves-dark" href="{{ route('staff.idea.create') }}"><i class="icon-people"></i><span class="hide-menu">Create Idea</span></a>
-                </li>
-                <li>
                     <a class="waves-effect waves-dark" href="published_idea"><i class="icons-Talk-Man"></i><span class="hide-menu">Published Idea</span></a>
                 </li>
                 <li>
                     <a class="waves-effect waves-dark" href="draft_idea"><i class="icon-layers"></i><span class="hide-menu">Draft Idea</span></a>
-                </li>
-                <li>
-                    <a class="waves-effect waves-dark" href="terms_conditions"><i class="icon-calender"></i><span class="hide-menu">Terms & Conditions</span></a>
                 </li>
             </ul>
         </nav>

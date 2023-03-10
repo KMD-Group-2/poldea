@@ -2,3 +2,29 @@
     background-color: #CECFD8!important;
     cursor: pointer;
 }
+
+.term-condition .content{
+    max-height: 150px;
+    overflow-y: scroll;
+}
+
+a.disabled {
+    background-color: #CECFD8!important;
+    color: #000000!important;
+    border-color: #CECFD8!important;
+    cursor: not-allowed;
+}
+
+a.disabled:hover{
+    background-color: #CECFD8!important;
+    color: #000000!important;
+    border-color: #CECFD8!important;
+    cursor: not-allowed;
+}
+
+a.disabled:focus{
+    background-color: #CECFD8!important;
+    color: #000000!important;
+    border-color: #CECFD8!important;
+    cursor: not-allowed;
+}

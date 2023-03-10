@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Idea\StoreInfoRequest;
+use App\Models\AcademicYear;
+use App\Models\Category;
+use App\Models\Idea;
 use Illuminate\Http\Request;
 
 class IdeaController extends Controller
@@ -13,7 +17,7 @@ class IdeaController extends Controller
      */
     public function index()
     {
-        
+
     }
 
     /**
@@ -21,9 +25,43 @@ class IdeaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function addInformationView(Idea $idea = null)
     {
-        return view('pages.ideas.create');
+        $categories = Category::select('id','name')->get();
+        $academicYears = AcademicYear::select('id','academic_year')->whereDate('closure_date', '>=', now())->get();
+
+        if(count($categories) == 0 || count($academicYears) == 0)
+            return redirect()->back()->withErrors(['create-idea' => "Idea can't be post yet! Please contact system administrator!"]);
+
+        // plugin ON
+        view()->share([
+            'steps' => true,
+            'sweetalert' => true,
+            'htmleditor' => true,
+        ]);
+
+        return view('pages.ideas.add-info',compact('categories','academicYears','idea'));
+    }
+
+    public function uploadFilesView(Idea $idea)
+    {
+        view()->share([
+            'steps' => true,
+            'sweetalert' => true,
+            'htmleditor' => true,
+        ]);
+
+        return view('pages.ideas.upload-files',compact('idea'));
+    }
+
+    public function previewIdeaView(Idea $idea)
+    {
+        view()->share([
+            'steps' => true,
+            'sweetalert' => true,
+            'htmleditor' => true,
+        ]);
+        return view('pages.ideas.preview-idea',compact('idea'));
     }
 
     /**
@@ -32,9 +70,18 @@ class IdeaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storeInfo(StoreInfoRequest $request)
     {
-        //
+        $idea = Idea::updateOrCreate([
+            'id' => $request->idea_id ? $request->idea_id : 0,
+        ],$request->validated());
+
+        return response()->json(['id' => $idea->id],200);
+    }
+
+    public function uploadFiles()
+    {
+
     }
 
     /**

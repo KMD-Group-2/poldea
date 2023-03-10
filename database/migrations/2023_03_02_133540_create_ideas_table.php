@@ -18,9 +18,11 @@ class CreateIdeasTable extends Migration
             $table->unsignedBigInteger('academic_year_id');
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('user_id');
+            $table->string('title',100);
             $table->longText('description');
             $table->tinyInteger('anonymous')->default(0);
-            $table->timestamp('posted_at');
+            $table->timestamp('posted_at')->nullable();
+            $table->tinyInteger('qa_c_read')->default(0);
             $table->timestamps();
 
             $table->foreign('academic_year_id')->on('academic_years')->references('id')->onDelete('cascade');
