@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 Route::redirect('/', 'login');
 
 Route::middleware(['auth'])->group(function(){
+
     Route::get('/home',[LandingController::class, 'index']);
 
     Route::as('admin.')->group(function(){
@@ -66,6 +67,8 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/Ideas',[LandingController::class, 'StaffDashboard'])->name('dashboard');
         Route::get('create-idea',[IdeaController::class,'create'])->name('idea.create');
     });
+
+    Route::get('idea/{idea}',[IdeaController::class, 'show']);
 });
 
 require __DIR__ . '/auth.php';
