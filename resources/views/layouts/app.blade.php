@@ -28,8 +28,8 @@
     <link href="{{ asset('css/pages/steps/steps.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/plugins/sweetalert2/dist/sweetalert2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/plugins/html5-editor/bootstrap-wysihtml5.css') }}" rel="stylesheet" />
-    <!-- Dropzone css -->
-    <link href="{{ asset('assets/plugins/dropzone-master/dist/dropzone.css') }}" rel="stylesheet" type="text/css" />
+    <!-- Carousel css -->
+    <link href="{{ asset('css/pages/carousel.css') }}" rel="stylesheet" type="text/css" />
 
 
     @if ($high_chart ?? false)
@@ -157,6 +157,19 @@
 
     <!--Stepper Form JS -->
     <script src="{{ asset('assets/plugins/sweetalert2/dist/sweetalert2.min.js') }}"></script>
+
+
+    <script>
+        $(document).ready(function() {
+
+            $('.textarea_editor').wysihtml5();
+
+
+        });
+    </script>
+
+    <!--Stepper Form JS -->
+    <script src="{{ asset('assets/plugins/sweetalert2/dist/sweetalert2.min.js') }}"></script>
     <script>
         $(".tab-wizard").steps({
             headerTag: "h6",
@@ -222,16 +235,8 @@
     <!-- wysuhtml5 Plugin JavaScript -->
     <script src="{{ asset('assets/plugins/html5-editor/wysihtml5-0.3.0.js') }}"></script>
     <script src="{{ asset('assets/plugins/html5-editor/bootstrap-wysihtml5.js') }}"></script>
-    <script>
-        $(document).ready(function() {
-
-            $('.textarea_editor').wysihtml5();
 
 
-        });
-    </script>
-    <!-- Dropzone Plugin JavaScript -->
-    <script src="{{ asset('assets/plugins/dropzone-master/dist/dropzone.js') }}"></script>
 
 
     <script>

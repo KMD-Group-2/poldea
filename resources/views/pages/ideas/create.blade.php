@@ -142,18 +142,105 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row mt-5">
-                                            <div class="col-md-6">
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="d-flex">
-                                                    <input type="date" class="form-control"
-                                                        value="<?php echo date('Y-m-d'); ?>">
+
+                                        <div class="row mt-5 ">
+                                            <!-- carousel content -->
+                                            <div class="carousel-content">
+                                                <div class="container-fluid">
+                                                    <div id="carousel-uploaded" class="carousel slide"
+                                                        data-ride="carousel">
+                                                        <div class="carousel-inner row w-100 mx-auto" role="listbox">
+                                                            <div
+                                                                class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
+                                                                <img src="{{ asset('//via.placeholder.com/200x200?text=1') }}"
+                                                                    class="img-fluid mx-auto d-block" alt="img1">
+                                                            </div>
+                                                            <div
+                                                                class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
+                                                                <img src="{{ asset('//via.placeholder.com/200x200?text=2') }}"
+                                                                    class="img-fluid mx-auto d-block" alt="img2">
+                                                            </div>
+                                                            <div
+                                                                class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
+                                                                <img src="{{ asset('//via.placeholder.com/200x200?text=3') }}"
+                                                                    class="img-fluid mx-auto d-block" alt="img3">
+                                                            </div>
+                                                            <div
+                                                                class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
+                                                                <img src="{{ asset('//via.placeholder.com/200x200?text=4') }}"
+                                                                    class="img-fluid mx-auto d-block" alt="img4">
+                                                            </div>
+                                                            <div
+                                                                class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
+                                                                <img src="{{ asset('//via.placeholder.com/200x200?text=5') }}"
+                                                                    class="img-fluid mx-auto d-block" alt="img5">
+                                                            </div>
+                                                            <div
+                                                                class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
+                                                                <img src="{{ asset('//via.placeholder.com/200x200?text=6') }}"
+                                                                    class="img-fluid mx-auto d-block" alt="img6">
+                                                            </div>
+                                                            <div
+                                                                class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
+                                                                <img src="{{ asset('//via.placeholder.com/200x200?text=7') }}"
+                                                                    class="img-fluid mx-auto d-block" alt="img7">
+                                                            </div>
+                                                            <div
+                                                                class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
+                                                                <img src="{{ asset('//via.placeholder.com/200x200?text=8') }}"
+                                                                    class="img-fluid mx-auto d-block" alt="img8">
+                                                            </div>
+                                                            <div
+                                                                class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
+                                                                <img src="{{ asset('//via.placeholder.com/200x200?text=9') }}"
+                                                                    class="img-fluid mx-auto d-block" alt="img8">
+                                                            </div>
+                                                            <div
+                                                                class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
+                                                                <img src="{{ asset('//via.placeholder.com/200x200?text=10') }}"
+                                                                    class="img-fluid mx-auto d-block" alt="img8">
+                                                            </div>
+                                                            <div
+                                                                class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
+                                                                <img src="{{ asset('//via.placeholder.com/200x200?text=11') }}"
+                                                                    class="img-fluid mx-auto d-block" alt="img8">
+                                                            </div>
+                                                        </div>
+                                                        <a class="carousel-control-prev" href="#carousel-uploaded"
+                                                            role="button" data-slide="prev">
+                                                            <span class="carousel-control-prev-icon"
+                                                                aria-hidden="true"></span>
+                                                            <span class="sr-only">Previous</span>
+                                                        </a>
+                                                        <a class="carousel-control-next" href="#carousel-uploaded"
+                                                            role="button" data-slide="next">
+                                                            <span class="carousel-control-next-icon"
+                                                                aria-hidden="true"></span>
+                                                            <span class="sr-only">Next</span>
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row mt-5 ">
 
+                                        <div class="col-md-12 mt-5">
+                                            <div class="row justify-content-end">
+                                                <div class="d-flex">
+                                                    <a class="btn btn-info d-none d-lg-block m-l-15" href="#"><i
+                                                            class="fa far fa-images"></i>
+                                                        Upload
+                                                        Image </a>
+                                                </div>
+                                                <div class="d-flex">
+                                                    <a class="btn btn-info d-none d-lg-block m-l-15" href="#">
+                                                        Upload
+                                                        File <i class="fa fa-upload"></i> </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <!------ Include the above in your HEAD tag ---------->
                                         </div>
                                     </div>
                                 </div>
@@ -248,4 +335,45 @@
     <!-- ============================================================== -->
     <!-- End Container fluid  -->
     <!-- ============================================================== -->
+
+
+    <!-- This Page JS -->
+
+
+
+    <!-- wysuhtml5 Plugin JavaScript -->
+    <script>
+        $(document).ready(function() {
+
+            $('.textarea_editor').wysihtml5();
+
+
+        });
+    </script>
+
+
+    <script>
+        /* Carousel */
+        $('#carousel-uploaded').on('slide.bs.carousel', function(e) {
+
+            var $e = $(e.relatedTarget);
+            var idx = $e.index();
+            var itemsPerSlide = 5;
+            var totalItems = $('.carousel-item').length;
+
+            if (idx >= totalItems - (itemsPerSlide - 1)) {
+                var it = itemsPerSlide - (totalItems - idx);
+                for (var i = 0; i < it; i++) {
+                    // append slides to end
+                    if (e.direction == "left") {
+                        $('.carousel-item').eq(i).appendTo('.carousel-inner');
+                    } else {
+                        $('.carousel-item').eq(0).appendTo('.carousel-inner');
+                    }
+                }
+            }
+        });
+    </script>
+
+
 </x-app-layout>
