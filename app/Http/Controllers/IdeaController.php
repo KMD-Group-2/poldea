@@ -13,7 +13,7 @@ class IdeaController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -45,7 +45,7 @@ class IdeaController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('pages.ideas.detail', compact('id'));
     }
 
     /**
