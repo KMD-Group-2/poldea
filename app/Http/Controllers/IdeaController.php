@@ -106,7 +106,7 @@ class IdeaController extends Controller
             }
         }
 
-        $filePath = $this->uploadFilePath($request->validated()['file'], Auth::user()->name . '/' . $request->validated()['file']->getClientOriginalExtension());
+        $filePath = $this->uploadFilePath($request->validated()['file'], Auth::user()->username . '/' . $request->validated()['file']->getClientOriginalExtension());
 
         $ideaFile = IdeaDocuments::create([
             'type' => $request->validated()['file']->getClientOriginalExtension(),
