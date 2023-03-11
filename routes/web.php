@@ -63,9 +63,15 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/QA-Coordinator-dashboard', [LandingController::class, 'QACoordinatorDashboard'])->name('dashboard');
     });
 
-    Route::as('staff.')->group(function () {
-        Route::get('/Ideas', [LandingController::class, 'StaffDashboard'])->name('dashboard');
-        Route::get('create-idea', [IdeaController::class, 'create'])->name('idea.create');
+    Route::as('staff.')->group(function(){
+        Route::get('/Ideas',[LandingController::class, 'StaffDashboard'])->name('dashboard');
+        Route::get('add-information/{idea?}',[IdeaController::class,'addInformationView'])->name('idea.add-info');
+        Route::get('upload-files/{idea}',[IdeaController::class,'uploadFilesView'])->name('idea.upload-file');
+        Route::get('preview-idea/{idea}',[IdeaController::class,'previewIdeaView'])->name('idea.preview-idea');
+        Route::post('add-information',[IdeaController::class, 'storeInfo'])->name('idea.add-info.store');
+        Route::post('upload-files',[IdeaController::class, 'uploadFiles'])->name('idea.upload-file.store');
+        Route::post('delete-file', [IdeaController::class, 'deleteFile'])->name('idea.upload-file.delete');
+
         Route::get('idea-detail/{id}', [IdeaController::class, 'show'])->name('idea.detail');
     });
 

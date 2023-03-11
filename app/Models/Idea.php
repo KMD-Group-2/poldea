@@ -18,37 +18,39 @@ class Idea extends Model
         'academic_year_id',
         'category_id',
         'user_id',
+        'title',
         'description',
         'anonymous',
         'posted_at',
+        'qa_c_read',
     ];
 
-    public function idea_academic_year()
+    public function academic_year()
     {
-        return $this->belongsTo(IdeaAcademicYear::class);
+        return $this->belongsTo(AcademicYear::class);
     }
 
-    public function idea_category()
+    public function category()
     {
-        return $this->belongsTo(IdeaCategory::class);
+        return $this->belongsTo(Category::class);
     }
 
-    public function idea_comments()
+    public function comments()
     {
         return $this->hasMany(IdeaComments::class);
     }
 
-    public function idea_documents()
+    public function documents()
     {
         return $this->hasMany(IdeaDocuments::class);
     }
 
-    public function idea_like_unlikes()
+    public function like_unlikes()
     {
         return $this->hasMany(IdeaLikeUnlike::class);
     }
 
-    public function idea_views()
+    public function views()
     {
         return $this->hasMany(IdeaView::class);
     }
