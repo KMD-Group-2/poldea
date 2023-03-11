@@ -30,8 +30,15 @@
         <link href="{{ asset('css/pages/steps/steps.css') }}" rel="stylesheet">
     @endif
 
-    <!-- Carousel css -->
-    <link href="{{ asset('css/pages/carousel.css') }}" rel="stylesheet" type="text/css" />
+    @if ($progressbar ?? false)
+        <!-- Progress bar css -->
+        <link href="{{ asset('css/pages/progressbar-page.css') }}" rel="stylesheet" type="text/css" />
+    @endif
+
+    @if ($carousel ?? false)
+        <!-- Carousel css -->
+        <link href="{{ asset('css/pages/carousel.css') }}" rel="stylesheet" type="text/css" />
+    @endif
 
     @if ($sweetalert ?? false)
         <link href="{{ asset('assets/plugins/sweetalert2/dist/sweetalert2.min.css') }}" rel="stylesheet">
