@@ -1,11 +1,11 @@
 <?php
 
-namespace App\View\Components\staff;
+namespace App\View\Components\Staff;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\View\Component;
 
-class table extends Component
+class Table extends Component
 {
     public Collection $staff;
     /**
