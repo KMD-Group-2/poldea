@@ -21,7 +21,7 @@
                             <img
                                 src="/assets/images/default-user.png"
                                 alt="profile picture"
-                                class=""
+                                class="mr-2"
                             />
                              <span class="hidden-md-down">
                                 {{ auth()->user()->username }} &nbsp;
