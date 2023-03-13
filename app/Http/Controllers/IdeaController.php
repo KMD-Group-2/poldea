@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Idea\StoreIdeaPublishRequest;
 use App\Http\Requests\Idea\StoreInfoRequest;
 use App\Http\Requests\Idea\StoreUploadFileRequest;
 use App\Models\AcademicYear;
@@ -65,7 +66,6 @@ class IdeaController extends Controller
         view()->share([
             'steps' => true,
             'sweetalert' => true,
-            'htmleditor' => true,
         ]);
         return view('pages.ideas.preview-idea', compact('idea'));
     }
@@ -142,6 +142,15 @@ class IdeaController extends Controller
         }
     }
 
+    public function publishIdea(StoreIdeaPublishRequest $request)
+    {
+        $idea = Idea::findOrFail($request->idea_id);
+
+        $idea->update($request->validated());
+
+        return response()->json(['success' => 'Successfully Published!']);
+    }
+
     /**
      * Display the specified resource.
      *
@@ -151,39 +160,5 @@ class IdeaController extends Controller
     public function show($id)
     {
         return view('pages.ideas.detail', compact('id'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

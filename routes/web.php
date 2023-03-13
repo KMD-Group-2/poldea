@@ -71,6 +71,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('add-information',[IdeaController::class, 'storeInfo'])->name('idea.add-info.store');
         Route::post('upload-files',[IdeaController::class, 'uploadFiles'])->name('idea.upload-file.store');
         Route::post('delete-file', [IdeaController::class, 'deleteFile'])->name('idea.upload-file.delete');
+        Route::post('publish-idea', [IdeaController::class, 'publishIdea'])->name('idea.publish');
 
         Route::get('idea-detail/{id}', [IdeaController::class, 'show'])->name('idea.detail');
     });

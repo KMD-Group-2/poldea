@@ -24,7 +24,11 @@
             <div class="col-12">
                 <div class="wizard-content">
                     <div>
-                        <form action="#" class="validation-wizard wizard-circle">
+                        <form action="{{ route('staff.idea.publish') }}" method="POST"
+                            class="validation-wizard wizard-circle">
+                            @csrf
+
+                            <input type="hidden" name="idea_id" value="{{ $idea->id }}">
                             <!-- Step 1 -->
                             <h6>Add Information</h6>
                             <section></section>
@@ -38,7 +42,8 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-8 align-self-center">
-                                                <h5 class="card-title">{{ $idea->title ?? '' }}</h5>
+                                                <h5 class="card-title">{{ $idea->title ?? '' }} <span
+                                                        class="text-info">(Preview Idea Post)</span></h5>
                                             </div>
                                             <div class="col-md-4 align-self-center text-md-right">
                                                 <span
@@ -70,22 +75,25 @@
                                             <div>{!! $idea->description ?? '' !!}</div>
 
                                             <div class="d-flex mt-4 justify-content-end">
-                                                <a href="" class="text-info">View Detail</a>
+                                                <a href="" class="text-primary">View Detail</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <h6 class="m-b-0 mt-4">Academic Closure Date <i class="fas fa-info-circle"
-                                        data-toggle="tooltip" data-placement="top"
-                                        title="Idea can be publish before academic year closure date."></i></h6>
-                                <div class="row my-2">
-                                    <div class="col-md-6">
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="d-flex">
-                                            <input type="date" class="form-control bg-white" style="opacity: 1"
-                                                value="{{ $idea->academic_year->closure_date }}" disabled>
+                                <div class="card radius my-4">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-12 align-self-center">
+                                                <h5 class="card-title">Academic Closure Date </h5>
+                                            </div>
+                                        </div>
+                                        <hr class="m-t-0">
+                                        <div class="content">
+                                            <p class="mb-0">Idea Closure Date:
+                                                <b>{{ $idea->academic_year->closure_date }}</b></p>
+                                            <p class="mb-0 text-danger">Note - Idea can be publish before academic year
+                                                closure date.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -153,8 +161,10 @@
 
                                 <div class="d-flex">
                                     <div class="custom-control custom-checkbox mr-sm-2 mb-3">
-                                        <input type="checkbox" class="custom-control-input" id="checkbox0" name="term-condition">
-                                        <label class="custom-control-label" for="checkbox0">I agree Terms and Conditions</label>
+                                        <input type="checkbox" class="custom-control-input" id="checkbox0"
+                                            name="term-condition">
+                                        <label class="custom-control-label" for="checkbox0">I agree Terms and
+                                            Conditions</label>
                                     </div>
                                 </div>
                             </section>
@@ -168,6 +178,21 @@
         <!-- End PAge Content -->
         <!-- ============================================================== -->
 
+        <div class="d-none dropdown-area">
+            <div class="dropdown show">
+                <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Publish
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="javascript:void(0)" role="menuitem" data-publish="author">Publish as
+                        Author</a>
+                    <a class="dropdown-item" href="javascript:void(0)" role="menuitem" data-publish="anonymous">Publish
+                        as Anonymous</a>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- ============================================================== -->
     <!-- End Container fluid  -->
@@ -176,6 +201,8 @@
     <x-slot name="script">
         <script>
             var form = $(".validation-wizard").show();
+
+            var publish;
 
             $(".validation-wizard").steps({
                 headerTag: "h6",
@@ -200,15 +227,60 @@
 
                     return false;
                 },
+                onFinishing: function(event, currentIndex) {
+                    if (publish == 'author' || publish == 'anonymous') {
+                        var formData = new FormData(form[0]);
+                        formData.append('type', publish);
+
+                        $.ajax({
+                            url: $(form).attr('action'),
+                            method: $(form).attr('method'),
+                            data: formData,
+                            cache: false,
+                            contentType: false,
+                            processData: false,
+                            success: function(res) {
+                                if (res.success) {
+                                    return true;
+                                }
+                            },
+                        })
+
+                        return true;
+                    }
+                    return false;
+                },
+                onFinished: function(event, currentIndex) {
+                    Swal.fire({
+                        title: "Idea Successfully Published!",
+                        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lorem erat eleifend ex semper, lobortis purus sed.",
+                        type: 'success',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'OK'
+                    }).then(function(result) {
+                        if(result) {
+                            window.location.href = "{{ route('staff.dashboard') }}";
+                        }
+                    });
+                }
             })
 
-            $('.validation-wizard .actions li:last-child a').attr('href','javascript:void(0)').addClass('disabled');
+            $('.validation-wizard .actions li:last-child').html($('.dropdown-area').html());
 
-            $('input[name=term-condition]').on('click',function(){
-                if($(this).is(':checked')) {
-                    $('.validation-wizard .actions li:last-child a').attr('href','#finish').removeClass('disabled');
-                } else{
-                    $('.validation-wizard .actions li:last-child a').attr('href','javascript:void(0)').addClass('disabled');
+            $(document).on('click', '.dropdown .dropdown-menu a', function(e) {
+                e.preventDefault();
+                publish = $(this).data('publish');
+                $(".wizard").steps("finish");
+            })
+
+            $('.validation-wizard .actions li:last-child a').attr('href', 'javascript:void(0)').addClass('disabled');
+
+            $('input[name=term-condition]').on('click', function() {
+                if ($(this).is(':checked')) {
+                    $('.validation-wizard .actions li:last-child a').attr('href', '#finish').removeClass('disabled');
+                } else {
+                    $('.validation-wizard .actions li:last-child a').attr('href', 'javascript:void(0)').addClass(
+                        'disabled');
                 }
             })
         </script>

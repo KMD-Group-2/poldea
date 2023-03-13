@@ -243,3 +243,12 @@ img.mfp-img{
         -webkit-mask-position: left;
     }
 }
+
+.wizard-content .wizard>.actions>ul>li>.dropdown>a {
+    background: #004274;
+    color: #fff;
+    display: block;
+    padding: 7px 18px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+}
