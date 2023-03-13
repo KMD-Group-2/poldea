@@ -12,11 +12,13 @@
                     <h3 class="text-left m-b-20">Sign In</h3>
                     <div class="form-group ">
                         <div class="col-xs-12">
-                            <input class="form-control" type="text" name="username" placeholder="Username" required> </div>
+                            <input class="form-control" type="text" name="username" placeholder="Username" required>
+                        </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <input class="form-control" type="password" name="password" placeholder="Password" required> </div>
+                            <input class="form-control" type="password" name="password" placeholder="Password" required>
+                        </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-md-12">
