@@ -58,6 +58,18 @@
     @if ($high_chart ?? false)
         <link rel="stylesheet" href="{{ asset('assets/plugins/highcharts/css/highcharts-style.css') }}">
     @endif
+
+    @if ($datepicker ?? false)
+        <!-- Date picker plugins css -->
+        <link href="{{ asset('assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css') }}" rel="stylesheet"
+            type="text/css" />
+    @endif
+
+    @if ($daterangepicker ?? false)
+        <!-- Daterange picker plugins css -->
+        <link href="{{ asset('assets/plugins/timepicker/bootstrap-timepicker.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/plugins/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet">
+    @endif
 </head>
 
 <body class="skin-blue fixed-layout">
@@ -137,6 +149,8 @@
     <!-- ============================================================== -->
     <!-- This page plugins -->
     <!-- ============================================================== -->
+    <script src="{{ asset('assets/plugins/moment/moment.js') }}"></script>
+
     @if ($carousel ?? false)
         <script src="{{ asset('assets/plugins/owlcarousel/js/owl.carousel.min.js') }}"></script>
     @endif
@@ -169,6 +183,17 @@
         <script>
             $(".select2").select2();
         </script>
+    @endif
+
+    @if ($datepicker ?? false)
+        <!-- Date Picker Plugin JavaScript -->
+        <script src="{{ asset('assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
+    @endif
+
+    @if ($daterangepicker ?? false)
+        <!-- Date range Plugin JavaScript -->
+        <script src="{{ asset('assets/plugins/timepicker/bootstrap-timepicker.min.js') }}"></script>
+        <script src="{{ asset('assets/plugins/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
     @endif
 
     {{ $script ?? false }}
