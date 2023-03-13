@@ -2,20 +2,20 @@
 
 namespace App\View\Components\Staff;
 
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\View\Component;
 
 class Table extends Component
 {
-    public Collection $staff;
+    public LengthAwarePaginator $staff;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct(Collection $staffCollection)
+    public function __construct(LengthAwarePaginator $staff)
     {
-        $this->staff = $staffCollection;
+        $this->staff = $staff;
     }
 
     /**
