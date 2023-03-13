@@ -41,7 +41,7 @@
         <link rel="stylesheet" href="{{ asset('assets/plugins/owlcarousel/css/owl.theme.default.min.css') }}">
     @endif
 
-    @if ($imagePopup)
+    @if ($imagePopup ?? false)
         <link href="{{ asset('assets/plugins/magnific-popup/css/magnific-popup.css') }}" rel="stylesheet">
     @endif
 
