@@ -37,7 +37,12 @@
 
     @if ($carousel ?? false)
         <!-- Carousel css -->
-        <link href="{{ asset('css/pages/carousel.css') }}" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="{{ asset('assets/plugins/owlcarousel/css/owl.carousel.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/plugins/owlcarousel/css/owl.theme.default.min.css') }}">
+    @endif
+
+    @if ($imagePopup)
+        <link href="{{ asset('assets/plugins/magnific-popup/css/magnific-popup.css') }}" rel="stylesheet">
     @endif
 
     @if ($sweetalert ?? false)
@@ -132,6 +137,14 @@
     <!-- ============================================================== -->
     <!-- This page plugins -->
     <!-- ============================================================== -->
+    @if ($carousel ?? false)
+        <script src="{{ asset('assets/plugins/owlcarousel/js/owl.carousel.min.js') }}"></script>
+    @endif
+
+    @if ($imagePopup ?? false)
+        <script src="{{ asset('assets/plugins/magnific-popup/js/jquery.magnific-popup.min.js') }}"></script>
+    @endif
+
     @if ($sweetalert ?? false)
         <script src="{{ asset('assets/plugins/sweetalert2/dist/sweetalert2.min.js') }}"></script>
     @endif

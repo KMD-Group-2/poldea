@@ -25,7 +25,7 @@ class StoreUploadFileRequest extends FormRequest
     {
         return [
             'idea_id' => 'required',
-            'file' => 'required|max:10000|mimes:pdf,doc,docx', //a required, max 10000kb, pdf or doc or docx file
+            'file' => 'required|max:10000|mimes:pdf,doc,docx,png,jpg,jpeg', //a required, max 10000kb, pdf or doc or docx or png or jpg or jpeg file
         ];
     }
 }

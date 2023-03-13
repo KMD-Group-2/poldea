@@ -71,116 +71,51 @@
                                         <div class="row mt-3">
                                             <div class="col-12">
                                                 <div class="d-flex justify-content-end">
-                                                    <a class="btn btn-info d-none d-lg-block m-l-15" href="#"
-                                                        class="rounded-lg"><i class="fa far fa-images"></i>
+                                                    <a class="btn btn-info d-none d-lg-block m-l-15"
+                                                        href="javascript:void(0)" data-type="image"
+                                                        onclick="onClickFile(this)" class="rounded-lg"><i
+                                                            class="fa far fa-images"></i>
                                                         Upload
                                                         Image </a>
                                                     <a class="btn btn-info d-none d-lg-block m-l-15"
-                                                        href="javascript:void(0)" onclick="$('[name=file]').click();"
-                                                        class="rounded-lg"><i class="fa fa-upload"></i> Upload
+                                                        href="javascript:void(0)" data-type="file"
+                                                        onclick="onClickFile(this)" class="rounded-lg"><i
+                                                            class="fa fa-upload"></i> Upload
                                                         File</a>
                                                     <input type="file" name="file" class="d-none"
-                                                        accept=".pdf, .doc, .docx" onchange="OnChangeFile(this)">
+                                                        onchange="OnChangeFile(this)">
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div class="row mt-5 ">
+                                        <div class="row mt-3">
                                             <div class="col-12">
-                                                <!-- carousel content -->
-                                                <div class="carousel-content">
-                                                    <div class="container-fluid">
-                                                        <div id="carousel-uploaded" class="carousel slide"
-                                                            data-ride="carousel">
-                                                            <div class="carousel-inner w-100 mx-auto" role="listbox">
-                                                                <div
-                                                                    class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
-                                                                    <img src="{{ asset('//via.placeholder.com/200x200?text=1') }}"
-                                                                        class="img-fluid mx-auto d-block"
-                                                                        alt="img1">
-                                                                </div>
-                                                                <div
-                                                                    class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-                                                                    <img src="{{ asset('//via.placeholder.com/200x200?text=2') }}"
-                                                                        class="img-fluid mx-auto d-block"
-                                                                        alt="img2">
-                                                                </div>
-                                                                <div
-                                                                    class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-                                                                    <img src="{{ asset('//via.placeholder.com/200x200?text=3') }}"
-                                                                        class="img-fluid mx-auto d-block"
-                                                                        alt="img3">
-                                                                </div>
-                                                                <div
-                                                                    class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-                                                                    <img src="{{ asset('//via.placeholder.com/200x200?text=4') }}"
-                                                                        class="img-fluid mx-auto d-block"
-                                                                        alt="img4">
-                                                                </div>
-                                                                <div
-                                                                    class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-                                                                    <img src="{{ asset('//via.placeholder.com/200x200?text=5') }}"
-                                                                        class="img-fluid mx-auto d-block"
-                                                                        alt="img5">
-                                                                </div>
-                                                                <div
-                                                                    class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-                                                                    <img src="{{ asset('//via.placeholder.com/200x200?text=6') }}"
-                                                                        class="img-fluid mx-auto d-block"
-                                                                        alt="img6">
-                                                                </div>
-                                                                <div
-                                                                    class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-                                                                    <img src="{{ asset('//via.placeholder.com/200x200?text=7') }}"
-                                                                        class="img-fluid mx-auto d-block"
-                                                                        alt="img7">
-                                                                </div>
-                                                                <div
-                                                                    class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-                                                                    <img src="{{ asset('//via.placeholder.com/200x200?text=8') }}"
-                                                                        class="img-fluid mx-auto d-block"
-                                                                        alt="img8">
-                                                                </div>
-                                                                <div
-                                                                    class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-                                                                    <img src="{{ asset('//via.placeholder.com/200x200?text=9') }}"
-                                                                        class="img-fluid mx-auto d-block"
-                                                                        alt="img8">
-                                                                </div>
-                                                                <div
-                                                                    class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-                                                                    <img src="{{ asset('//via.placeholder.com/200x200?text=10') }}"
-                                                                        class="img-fluid mx-auto d-block"
-                                                                        alt="img8">
-                                                                </div>
-                                                                <div
-                                                                    class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-                                                                    <img src="{{ asset('//via.placeholder.com/200x200?text=11') }}"
-                                                                        class="img-fluid mx-auto d-block"
-                                                                        alt="img8">
-                                                                </div>
+                                                <!-- Carousel -->
+                                                <div class="carousel-wrap">
+                                                    <div class="owl-carousel owl-theme">
+                                                        @php
+                                                            $index = 0;
+                                                        @endphp
+                                                        @foreach ($idea->documents->whereIn('type', ['png', 'jpg', 'jpeg'])->sortByDesc('id') as $image)
+                                                            <div class="item">
+                                                                <a href="{{ asset($image->file_path) }}"
+                                                                    title="{{ $image->file_name }}.{{ $image->type }}"
+                                                                    id="{{ $image->id }}" class="zoom-popup">
+                                                                    <img src="{{ asset($image->file_path) }}"
+                                                                        class="mx-auto d-block rounded"
+                                                                        alt="{{ $image->file_name }}" width="200px"
+                                                                        height="200px">
+                                                                </a>
                                                             </div>
-                                                            <a class="carousel-control-prev" href="#carousel-uploaded"
-                                                                role="button" data-slide="prev">
-                                                                <span class="carousel-control-prev-icon"
-                                                                    aria-hidden="true"></span>
-                                                                <span class="sr-only">Previous</span>
-                                                            </a>
-                                                            <a class="carousel-control-next" href="#carousel-uploaded"
-                                                                role="button" data-slide="next">
-                                                                <span class="carousel-control-next-icon"
-                                                                    aria-hidden="true"></span>
-                                                                <span class="sr-only">Next</span>
-                                                            </a>
-                                                        </div>
+                                                        @endforeach
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="row my-5 files-area">
-                                            @foreach ($idea->documents as $file)
-                                                <div class="file-area col-md-6 col-lg-4 col-xl-3 mb-4"
+                                            @foreach ($idea->documents->whereIn('type', ['doc', 'docx', 'pdf']) as $file)
+                                                <div class="file-area col-md-6 col-lg-4 col-xl-4 mb-4"
                                                     data-entry-id="{{ $file->id }}">
                                                     <div class="file-tag border">
                                                         <div class="d-flex no-block py-2 px-3">
@@ -199,7 +134,7 @@
                                                             <div class="d-flex flex-column ml-3 no-block"
                                                                 style="flex-grow: 1">
                                                                 <p class="mb-0 file-name">
-                                                                    {{ $file->file_name . '.' . $file->type }}</p>
+                                                                    {{ $file->file_name }}.{{ $file->type }}</p>
                                                                 <span
                                                                     class="text-muted created-at">{{ Carbon\Carbon::parse($file->created_at)->format('d M Y, g:i A') }}</span>
                                                             </div>
@@ -207,7 +142,7 @@
                                                                 class="delete-file-content d-flex no-block align-items-center justify-content-end">
                                                                 <button type="button"
                                                                     class="ml-auto text-danger bg-transparent border-0"
-                                                                    onclick="OnDeleteFile(this)"><i
+                                                                    onclick="OnDeleteFile(this)" data-delete="file"><i
                                                                         class="far fa-times-circle icon-2x"></i></button>
                                                             </div>
                                                         </div>
@@ -222,8 +157,8 @@
                             <h6>Preview Post</h6>
                             <section></section>
                         </form>
-                        <form action="{{ route('staff.idea.upload-file.delete') }}" id="DeleteFileForm"
-                            method="POST">@csrf</form>
+                        <form action="{{ route('staff.idea.upload-file.delete') }}" id="DeleteFileForm" method="POST">
+                            @csrf</form>
                     </div>
                 </div>
             </div>
@@ -233,6 +168,65 @@
         <!-- End PAge Content -->
         <!-- ============================================================== -->
 
+        <div class="d-none preview-area">
+            <div class="file-preview">
+                <div class="file-area-preview col-md-6 col-lg-4 col-xl-4 mb-4" data-entry-id="">
+                    <div class="file-tag border">
+                        <div class="d-flex no-block py-2 px-3">
+                            <div
+                                class="file-image rounded-circle d-flex no-block align-items-center justify-content-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20"
+                                    height="20" viewBox="0 0 48 48">
+                                    <path fill="#469CE0" d="M40 45L8 45 8 3 30 3 40 13z">
+                                    </path>
+                                    <path fill="#E1F5FE" d="M38.5 14L29 14 29 4.5z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div class="d-flex flex-column ml-3 no-block" style="flex-grow: 1">
+                                <p class="mb-0 file-name">
+                                    Processing...</p>
+                                <span class="text-muted created-at"></span>
+                            </div>
+                            <div class="delete-file-content d-none align-items-center justify-content-end">
+                                <button type="button" class="ml-auto text-danger bg-transparent border-0"
+                                    data-delete="file" onclick="OnDeleteFile(this)"><i
+                                        class="far fa-times-circle icon-2x"></i></button>
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar bg-info wow animated progress-animated"
+                                style="width: 0%; height:6px;" role="progressbar"> <span class="sr-only"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="image-preview">
+                <div class="item item-preview">
+                    <div
+                        class="image-preload mx-auto rounded d-flex flex-column align-items-center justify-content-center">
+                        <div class="lds-roller">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                        <p class="text-main">Processing...</p>
+                    </div>
+                    <a href="" title="" id="" class="zoom-popup">
+                        <img src="" class="mx-auto d-none rounded" alt="" width="200px"
+                            height="200px">
+                    </a>
+                </div>
+            </div>
+        </div>
+
     </div>
     <!-- ============================================================== -->
     <!-- End Container fluid  -->
@@ -240,7 +234,64 @@
 
     <x-slot name="script">
         <script>
-            var form = $(".validation-wizard").show();
+            var filetype,
+                form = $(".validation-wizard").show();
+
+            $(document).ready(function() {
+                var owl = $('.owl-carousel').owlCarousel({
+                    loop: false,
+                    margin: 10,
+                    nav: true,
+                    dots: false,
+                    navText: ["<div class='nav-btn prev-slide'></div>",
+                        "<div class='nav-btn next-slide'></div>"
+                    ],
+                    responsive: {
+                        0: {
+                            items: 1
+                        },
+                        600: {
+                            items: 2
+                        },
+                        1000: {
+                            items: 3
+                        },
+                        1300: {
+                            items: 4
+                        },
+                        1400: {
+                            items: 5
+                        }
+                    }
+                })
+
+                $('.owl-carousel').magnificPopup({
+                    delegate: 'a',
+                    type: 'image',
+                    closeOnContentClick: false,
+                    closeBtnInside: false,
+                    mainClass: 'mfp-with-zoom mfp-img-mobile',
+                    image: {
+                        verticalFit: true,
+                        titleSrc: function(item) {
+                            return item.el.attr('title') +
+                                ' &middot; <a class="image-source-link" href="javascript:void(0)" data-delete="image" data-id="' +
+                                item.el.attr('id') + '" onclick="OnDeleteFile(this)" index="' + item.index + '">Delete Image</a>';
+                        }
+                    },
+                    gallery: {
+                        enabled: true
+                    },
+                    zoom: {
+                        enabled: true,
+                        duration: 300, // don't foget to change the duration also in CSS
+                        opener: function(element) {
+                            return element.find('img');
+                        }
+                    }
+                });
+            })
+
 
             $(".validation-wizard").steps({
                 headerTag: "h6",
@@ -267,6 +318,60 @@
                 },
             })
 
+            function onClickFile(tag) {
+                filetype = $(tag).data('type');
+                if (filetype == 'image') {
+                    $('[name=file]').attr('accept', '.png, .jpg, .jpeg');
+                } else {
+                    $('[name=file]').attr('accept', '.pdf, .doc, .docx');
+                }
+
+                $('[name=file]').click();
+            }
+
+            function OnChangeFile(input) {
+                if (input.value.length > 0) {
+
+                    if (filetype == 'image') {
+                        var allowedExtensions = /(\.png|\.jpg|\.jpeg)$/i,
+                            errorText = 'Allow extensions are .png,.jpg,.jpeg only!';
+                    } else {
+                        var allowedExtensions = /(\.pdf|\.doc|\.docx)$/i,
+                            errorText = 'Allow extensions are .pdf,.doc,.docx only!';
+                    }
+
+                    if (!allowedExtensions.exec(input.value)) {
+                        Swal.fire({
+                            type: 'error',
+                            title: 'Please upload file having extensions!',
+                            text: errorText,
+                        })
+                        input.value = '';
+                        return false;
+                    } else {
+                        let formData = new FormData(form[0]);
+
+                        $.ajax({
+                            beforeSend: function() {
+                                UploadProgressFile();
+                            },
+                            type: $(form).attr('method'),
+                            url: $(form).attr('action'),
+                            data: formData,
+                            cache: false,
+                            contentType: false,
+                            processData: false,
+                        }).done(function(res) {
+                            $(form).trigger('reset');
+
+                            setTimeout(() => {
+                                UploadFileCompleted(res.file);
+                            }, 3000);
+                        });
+                    }
+                }
+            }
+
             function OnDeleteFile(button) {
                 Swal.fire({
                     title: 'Are you sure?',
@@ -278,8 +383,14 @@
                     confirmButtonText: 'Yes, delete it!'
                 }).then((result) => {
                     if (result.value) {
-                        let id = $(button).closest('.file-area').data('entry-id'),
-                            deleteForm = $("#DeleteFileForm"),
+                        let type = $(button).data('delete');
+                        if (type == 'image') {
+                            var id = $(button).data('id');
+                        } else {
+                            var id = $(button).closest('.file-area').data('entry-id');
+                        }
+
+                        var deleteForm = $("#DeleteFileForm"),
                             formData = new FormData(deleteForm[0]);
 
                         formData.append('id', id);
@@ -293,46 +404,61 @@
                             processData: false,
                         }).done(function(res) {
                             deleteForm.trigger('reset');
-                            ReloadFiles(id);
+                            if (type == 'image') {
+                                $.magnificPopup.close();
+
+                                $(".owl-carousel").trigger('remove.owl.carousel', $(button).attr('index'))
+                                    .trigger('refresh.owl.carousel');
+                            } else {
+                                ReloadFiles(id);
+                            }
                         });
                     }
                 })
             }
 
-            function OnChangeFile(input) {
-                if (input.value.length > 0) {
-                    let allowedExtensions = /(\.pdf|\.doc|\.docx)$/i;
+            function UploadProgressFile() {
+                var html;
 
-                    if (!allowedExtensions.exec(input.value)) {
-                        Swal.fire({
-                            type: 'error',
-                            title: 'Please upload file having extensions!',
-                            text: 'Allow extensions are .pdf,.doc,.docx only!',
-                        })
-                        input.value = '';
-                        return false;
-                    } else {
-                        let formData = new FormData(form[0]);
+                if (filetype == 'image') {
+                    html = $('.preview-area .image-preview').html();
 
-                        $.ajax({
-                            beforeSend: function() {
-                                UploadProgressFile();
-                                $('.progress .progress-bar').css('width', '99%');
-                            },
-                            type: $(form).attr('method'),
-                            url: $(form).attr('action'),
-                            data: formData,
-                            cache: false,
-                            contentType: false,
-                            processData: false,
-                        }).done(function(res) {
-                            $(form).trigger('reset');
-                            $('.progress .progress-bar').removeClass('bg-info').css('width', '100%').addClass('bg-success');
-                            setTimeout(() => {
-                                UploadFileCompleted(res.file);
-                            }, 3000);
-                        });
-                    }
+                    $('.owl-carousel').trigger('to.owl.carousel', [0, 500])
+                    $(".owl-carousel").trigger('add.owl.carousel', [html, 0])
+                        .trigger('refresh.owl.carousel');
+                } else {
+                    $('.progress .progress-bar').css('width', '99%');
+
+                    html = $('.preview-area .file-preview').html();
+
+                    $(".files-area").append(html);
+                }
+            }
+
+            function UploadFileCompleted(data) {
+                if (filetype == 'image') {
+                    let content = $('.owl-carousel .item-preview');
+
+                    content.removeClass('item-preview');
+                    content.find('a').attr('href', {!! json_encode(url('/')) !!} + data.file_path);
+                    content.find('a').attr('title', data.file_name + '.' + data.type);
+                    content.find('a').attr('id', data.id);
+                    content.find('img').attr('src', {!! json_encode(url('/')) !!} + data.file_path);
+                    content.find('.image-preload').remove();
+                    content.find('img').removeClass('d-none').addClass('d-block');
+                } else {
+                    $('.progress .progress-bar').removeClass('bg-info').css('width', '100%').addClass(
+                        'bg-success');
+
+                    let content = $('.files-area .file-area-preview');
+
+                    content.removeClass('file-area-preview').addClass('file-area');
+                    content.data('entry-id', data.id);
+                    content.find('.file-name').html(data.file_name + '.' + data.type);
+                    content.find('.created-at').html(data.carbon_created_at);
+                    content.find('.delete-file-content').removeClass('d-none').addClass('d-flex no-block');
+
+                    content.find('.progress').remove();
                 }
             }
 
@@ -342,60 +468,6 @@
                         $(el).remove();
                     }
                 })
-            }
-
-            function UploadProgressFile() {
-                var html = `<div class="file-area-preview col-md-6 col-lg-4 col-xl-3 mb-4" data-entry-id="">
-                                <div class="file-tag border">
-                                    <div class="d-flex no-block py-2 px-3">
-                                        <div
-                                            class="file-image rounded-circle d-flex no-block align-items-center justify-content-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" x="0px"
-                                                y="0px" width="20" height="20"
-                                                viewBox="0 0 48 48">
-                                                <path fill="#469CE0"
-                                                    d="M40 45L8 45 8 3 30 3 40 13z">
-                                                </path>
-                                                <path fill="#E1F5FE" d="M38.5 14L29 14 29 4.5z">
-                                                </path>
-                                            </svg>
-                                        </div>
-                                        <div class="d-flex flex-column ml-3 no-block"
-                                            style="flex-grow: 1">
-                                            <p class="mb-0 file-name">
-                                                Processing...</p>
-                                            <span
-                                                class="text-muted created-at"></span>
-                                        </div>
-                                        <div
-                                            class="delete-file-content d-none align-items-center justify-content-end">
-                                            <button type="button"
-                                                class="ml-auto text-danger bg-transparent border-0"
-                                                onclick="OnDeleteFile(this)"><i
-                                                    class="far fa-times-circle icon-2x"></i></button>
-                                        </div>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-info wow animated progress-animated"
-                                            style="width: 0%; height:6px;" role="progressbar"> <span
-                                                class="sr-only"></span> </div>
-                                    </div>
-                                </div>
-                            </div>`;
-
-                $(".files-area").append(html);
-            }
-
-            function UploadFileCompleted(data) {
-                let content = $('.files-area .file-area-preview');
-
-                content.removeClass('file-area-preview').addClass('file-area');
-                content.data('entry-id',data.id);
-                content.find('.file-name').html(data.file_name + '.' + data.type);
-                content.find('.created-at').html(data.carbon_created_at);
-                content.find('.delete-file-content').removeClass('d-none').addClass('d-flex no-block');
-
-                content.find('.progress').remove();
             }
         </script>
     </x-slot>

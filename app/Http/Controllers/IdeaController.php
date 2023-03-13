@@ -54,6 +54,7 @@ class IdeaController extends Controller
             'progressbar' => true,
             'carousel' => true,
             'sweetalert' => true,
+            'imagePopup' => true,
         ]);
 
         return view('pages.ideas.upload-files', compact('idea'));
@@ -104,6 +105,8 @@ class IdeaController extends Controller
                     $fileName = $OriginalFileName;
                 }
             }
+        }else{
+            $fileName = $OriginalFileName;
         }
 
         $filePath = $this->uploadFilePath($request->validated()['file'], Auth::user()->username . '/' . $request->validated()['file']->getClientOriginalExtension());
